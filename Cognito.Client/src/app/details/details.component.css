@@ -1,0 +1,117 @@
+@media screen and (min-width: 901px) {
+    .popup-box {
+        background-color: #ffffff;
+        border: 1px solid #b0b0b0;
+        bottom: 0;
+        top: 0px;
+
+        height: 93%;
+        position: absolute;
+        right: 0px;
+        width: 200px;
+        font-family: 'Open Sans', sans-serif;
+        margin-left: 150px;
+    }
+
+    .content-block .dx-card .responsive-paddings {
+        margin-right: 240px !important;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .popup-box {
+        background-color: red;
+        border: 1px solid #b0b0b0;
+        bottom: 0;
+        top: 0px;
+        height: 500px;
+        margin-left: 50px;
+        font-family: 'Open Sans', sans-serif;
+    }
+}
+
+.devextreme-logo {
+    width: 200px;
+    height: 34px;
+    margin-bottom: 13px;
+}
+
+.angular-logo {
+    width: 220px;
+    height: 62px;
+}
+
+.plus {
+    margin: 15px 10px;
+    width: 22px;
+    height: 22px;
+}
+
+.title {
+    color: #909090;
+}
+
+.row-detail {
+    margin-left: 10px;
+}
+
+.row-detail table tr td {
+    padding: 0px;
+}
+
+.detail-table {
+    width: 45%;
+    float: left;
+}
+
+.v-line {
+    float: left;
+    border-left: 1px solid #909090;
+    height: 100px;
+    margin: 0 9px;
+    margin-top: 7px;
+}
+
+:host ::ng-deep .chrono-checkbox {
+    margin-top: 8px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+:host ::ng-deep .item-menu {
+    height: 60px;
+}
+
+:host ::ng-deep #detailsgrid {
+    height: calc(100% - 60px);
+}
+
+:host ::ng-deep .dx-double-click td {
+    background-color: #c3d3e6 !important;
+}
+
+:host ::ng-deep #detailsgrid .row-detail .largerow {
+    white-space: pre-wrap;
+    vertical-align: top;
+}
+
+:host ::ng-deep #detailsgrid .row-detail .smalllefttable {
+    float: left;
+    width: 49%;
+    height: 100px;
+    margin-top: 10px;
+}
+
+:host ::ng-deep #detailsgrid .row-detail .smallrighttable {
+    height: 100px;
+    margin-top: 10px;
+    width: 48%;
+}
+
+.source-value {
+    word-break: break-all;
+}
+
+.expand-value {
+    text-align: right;
+}

@@ -1,0 +1,41 @@
+:host ::ng-deep .widget-container {
+    margin-right: 320px;
+}
+:host ::ng-deep .content h4 {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 18px;
+}
+:host ::ng-deep .dx-drawer-panel-content .content {
+    margin-left: 10px;
+}
+:host ::ng-deep .selected-item {
+    margin-bottom: 20px;
+}
+:host ::ng-deep #selected-files {
+    display: none;
+}
+:host ::ng-deep .options {
+    display: none;
+    padding: 20px;
+    background-color: rgba(191, 191, 191, 0.15);
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 260px;
+}
+:host ::ng-deep .caption {
+    font-size: 18px;
+    font-weight: 500;
+}
+:host ::ng-deep .option {
+    margin-top: 10px;
+}
+:host ::ng-deep .dx-fileuploader-show-file-list .dx-fileuploader-files-container {
+    padding-top: 0px;
+}
+:host ::ng-deep .fileuploadertitle {
+    padding-left: 13px;
+    margin: 0;
+}

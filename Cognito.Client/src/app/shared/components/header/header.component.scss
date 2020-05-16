@@ -1,0 +1,86 @@
+@import '../../../../themes/generated/variables.base.scss';
+@import '../../../../dx-styles.scss';
+
+:host {
+    flex: 0 0 auto;
+    z-index: 1;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+    :host ::ng-deep .dx-toolbar .dx-toolbar-item.menu-button > .dx-toolbar-item-content .dx-icon {
+        color: #c1e0ff;
+    }
+}
+
+:host ::ng-deep .dx-toolbar.header-toolbar .dx-toolbar-items-container .dx-toolbar-after {
+    padding: 0 10px;
+
+    :host-context(.screen-x-small) & {
+        padding: 0 20px;
+    }
+}
+
+:host ::ng-deep .menu-button {
+    width: 40px;
+    height: 35px;
+    margin-left: 20px;
+    margin-right: 10px;
+    background-image: url('../../../../assets/icons/logo.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    cursor: pointer;
+}
+
+:host ::ng-deep .header-title .dx-item-content {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    margin-top: 7px;
+    margin-left: -12px;
+}
+
+:host-context(.dx-theme-generic) {
+    .dx-toolbar {
+        padding: 10px 0;
+        background-color: #005eb8;
+        color: white;
+    }
+
+    .user-button > .dx-button-content {
+        padding: 3px;
+    }
+}
+:host ::ng-deep .contact-button {
+    font-size: 14px !important;
+    cursor: pointer;
+}
+:host ::ng-deep .btn_contact {
+    margin-top: 20px;
+}
+
+:host ::ng-deep #togglebutton .btn {
+    cursor: pointer;
+    padding: 5px 30px;
+    margin-right: 10px;
+    border-radius: 18px;
+    color: white;
+    background-color: #6fa9e0;
+    height: 35px;
+    display: inline-block;
+    text-align: center;
+    font-weight: normal;
+    text-shadow: 1px 1px 1px #000;
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6), inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+}
+
+:host ::ng-deep #togglebutton .btn:hover {
+    color: white;
+    font-weight: normal;
+}
+
+:host ::ng-deep #togglebutton .btnDown {
+    background-color: #005eb8;
+    background-image: none;
+    outline: 0;
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6), inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}

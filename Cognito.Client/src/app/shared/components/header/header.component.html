@@ -1,0 +1,94 @@
+<header>
+    <dx-toolbar class="header-toolbar">
+        <dxi-item location="before">
+            <div class="menu-button" (click)="onLogoClick()"></div>
+        </dxi-item>
+        <dxi-item location="before" cssClass="header-title" *ngIf="title" [text]="title">
+        </dxi-item>
+
+        <dxi-item location="center">
+            <div id="togglebutton">
+                <div
+                    (click)="handleTasks()"
+                    [ngClass]="{ btn: true, btnDown: istasksPressed }"
+                    id="btn_tasks"
+                >
+                    Tasks
+                </div>
+                <div
+                    (click)="handleItems()"
+                    [ngClass]="{ btn: true, btnDown: isitemsPressed }"
+                    id="btn_items"
+                >
+                    Details
+                </div>
+                <div
+                    (click)="handleTabs()"
+                    [ngClass]="{ btn: true, btnDown: istabsPressed }"
+                    id="btn_tabs"
+                >
+                    Related Information
+                </div>
+            </div>
+        </dxi-item>
+
+        <dxi-item location="after" locateInMenu="auto" menuItemTemplate="menuItem">
+            <div *dxTemplate="let data of 'item'">
+                <dx-button
+                    class="user-button authorization"
+                    width=""
+                    height="100%"
+                    stylingMode="text"
+                >
+                    <div *dxTemplate="let data of 'content'">
+                        <app-user-panel
+                            [menuItems]="userMenuItems"
+                            menuMode="context"
+                        ></app-user-panel>
+                    </div>
+                </dx-button>
+            </div>
+        </dxi-item>
+    </dx-toolbar>
+</header>
+
+<dx-popup
+    [showTitle]="true"
+    title="Contact Support"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="contactPopupVisible"
+    [width]="500"
+    [height]="500"
+>
+    <form action="" (submit)="onContactSubmit()">
+        <dx-form
+            id="form"
+            [formData]="contactData"
+            [readOnly]="false"
+            [showColonAfterLabel]="true"
+            [showValidationSummary]="true"
+        >
+            <dxi-item dataField="subject">
+                <dxi-validation-rule type="required" message="Subject is required">
+                </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="message" editorType="dxTextArea" [editorOptions]="{ height: 300 }">
+                <dxi-validation-rule type="required" message="Message is required">
+                </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item
+                itemType="button"
+                horizontalAlignment="center"
+                [buttonOptions]="{
+                    text: 'Send',
+                    type: 'success',
+                    useSubmitBehavior: true,
+                    width: 100
+                }"
+                cssClass="btn_contact"
+            >
+            </dxi-item>
+        </dx-form>
+    </form>
+</dx-popup>

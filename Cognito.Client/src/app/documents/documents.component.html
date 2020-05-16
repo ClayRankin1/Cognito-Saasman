@@ -1,0 +1,112 @@
+<dx-menu
+    #menu
+    [dataSource]="menulist"
+    displayExpr="name"
+    width="100%"
+    orientation="horizontal"
+    submenuDirection="auto"
+    [hideSubmenuOnMouseLeave]="false"
+    [adaptivityEnabled]="false"
+    (onItemClick)="MenuClick($event)"
+>
+</dx-menu>
+
+<dx-drawer
+    id="documentsdrawer"
+    openedStateMode="shrink"
+    position="top"
+    revealMode="expand"
+    template="template"
+    [opened]="false"
+    [closeOnOutsideClick]="true"
+>
+    <div *dxTemplate="let data of 'template'" class="fileuploader">
+        <app-fileuploader></app-fileuploader>
+    </div>
+    <dx-data-grid
+        #clientGrid
+        id="clientGrid"
+        [dataSource]="dataSource"
+        [remoteOperations]="true"
+        height="100%"
+        (onRowClick)="onRowClick($event)"
+        (onToolbarPreparing)="onToolbarPreparing($event)"
+        (onSelectionChanged)="selectionChanged($event)"
+        [masterDetail]="{ enabled: false, template: 'detail' }"
+        [allowColumnReordering]="true"
+        [allowColumnResizing]="true"
+    >
+        <dxo-selection
+            selectAllMode="page"
+            showCheckBoxesMode="onClick"
+            mode="multiple"
+        ></dxo-selection>
+        <dxo-editing
+            mode="popup"
+            refreshMode="reshape"
+            [allowAdding]="true"
+            [allowUpdating]="true"
+            [allowDeleting]="true"
+            [useIcons]="true"
+        ></dxo-editing>
+
+        <dxi-column dataField="id" [visible]="false" dataType="number"></dxi-column>
+        <dxi-column
+            dataField="dateAdded"
+            [visible]="false"
+            dataType="date"
+            [allowEditing]="false"
+        ></dxi-column>
+        <dxi-column dataField="fileName" dataType="string"></dxi-column>
+        <dxi-column
+            dataField="dateUpdated"
+            [visible]="false"
+            dataType="date"
+            [allowEditing]="false"
+        ></dxi-column>
+        <dxi-column dataField="description" [visible]="false" dataType="string"></dxi-column>
+        <dxi-column dataField="url" [visible]="false" dataType="string"></dxi-column>
+        <dxi-column dataField="status" [visible]="false" dataType="string"></dxi-column>
+        <dxi-column type="buttons" [width]="110">
+            <dxi-button name="edit"></dxi-button>
+            <dxi-button name="delete"></dxi-button>
+            <dxi-button hint="Extractor" icon="export" [onClick]="redirecToExtraction">
+            </dxi-button>
+        </dxi-column>
+
+        <div *dxTemplate="let list of 'detail'">
+            <div class="row-detail">
+                <table height="">
+                    <tr>
+                        <td width="100" class="title">
+                            <img class="detail-icon" src="../../assets/icons/item.png" />
+                            Added Date
+                        </td>
+                        <td>{{ list.data.dateAdded }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/subject.png" />
+                            Updated Date
+                        </td>
+                        <td>{{ list.data.dateUpdated }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/source.png" />
+                            Description
+                        </td>
+                        <td>{{ list.data.description }}</td>
+                    </tr>
+                    <tr class="largetitle">
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/source.png" />
+                            URL
+                        </td>
+                        <td class="largetext">{{ list.data.url }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </dx-data-grid>
+</dx-drawer>

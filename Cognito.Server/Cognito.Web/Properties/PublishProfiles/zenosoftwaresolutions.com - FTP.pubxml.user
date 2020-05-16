@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAd1244Yt9jE+xdbPsC0MGXwAAAAACAAAAAAAQZgAAAAEAACAAAAA3pAvIi25w+KkNTNFYX399UjxwsHfdwPyuE85Tl2oI5AAAAAAOgAAAAAIAACAAAADhniWs3pjD/z5GDXiuCtjDTpIQ7GjhkGfjUkf6lCMVaiAAAAAfpnfPtLaFWCfb1ovP0OmftksAyd4CAp3dcdTpcenpmUAAAACkjbq1RlDxBC2f3QnOzaLn7yOvaH+9Zi15ERrjIFr83zmFf49TQMYn25y+JDP5OkcZ3DpEk7F+fqg0ZzaW04z0</EncryptedPassword>
+    <_PublishTargetUrl>ftp://w16.winhost.com:21/</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="appsettings.Development.json">
+      <publishTime>09/06/2019 13:10:02</publishTime>
+    </File>
+    <File Include="appsettings.json">
+      <publishTime>09/06/2019 19:22:14</publishTime>
+    </File>
+    <File Include="aws-beanstalk-tools-defaults.json">
+      <publishTime>09/14/2019 05:30:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/3rdpartylicenses.txt">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/assets/12.jpg">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/assets/2095.jpg">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/dxicons.71e4862eef32c43eca3f.woff2">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/dxicons.dffa1b6f8175e126e4fd.woff">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/dxicons.e7b052cb56375958973b.ttf">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/dxiconsmaterial.de33805c0651f8572e28.ttf">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/dxiconsmaterial.e606e2705d866e4ad02e.woff2">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/dxiconsmaterial.ef3cacd9a0a9db23d49a.woff">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/index.html">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/main.5bfd7f7e17515ae7941f.js">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/polyfills-es5.2879c31fa1093eecdd91.js">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/polyfills.884082f55fd527605a55.js">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/Roboto-300.c73eb1ceba3321a80a0a.woff">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/Roboto-300.d26871e8149b5759f814.woff2">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/Roboto-300.fc84e998bc29b297ea20.ttf">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/Roboto-400.35b07eb2f8711ae08d1f.woff">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/Roboto-400.3e1af3ef546b9e6ecef9.ttf">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/Roboto-400.73f0a88bbca1bec19fb1.woff2">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/Roboto-500.1d6594826615607f6dc8.woff">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/Roboto-500.90d1676003d9c28c0499.woff2">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/Roboto-500.d08840599e05db734565.ttf">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/Roboto-700.50d75e48e0a3ddab1dd1.woff">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/Roboto-700.b52fac2bb93c5858f3f2.woff2">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/Roboto-700.ee7b96fa85d8fdb8c126.ttf">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/runtime.8fbc2fd6f12647d93e24.js">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="ClientApp/dist/styles.92e0444288ea51a106c6.css">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="DevExtreme.AspNet.Core.dll">
+      <publishTime>09/08/2019 22:19:29</publishTime>
+    </File>
+    <File Include="DevExtreme.AspNet.Data.dll">
+      <publishTime>09/08/2019 22:19:29</publishTime>
+    </File>
+    <File Include="dotnet-aspnet-codegenerator-design.dll">
+      <publishTime>03/02/2019 19:52:30</publishTime>
+    </File>
+    <File Include="memento_core_angular.deps.json">
+      <publishTime>09/14/2019 20:28:30</publishTime>
+    </File>
+    <File Include="memento_core_angular.dll">
+      <publishTime>09/14/2019 20:27:15</publishTime>
+    </File>
+    <File Include="memento_core_angular.pdb">
+      <publishTime>09/14/2019 20:27:15</publishTime>
+    </File>
+    <File Include="memento_core_angular.runtimeconfig.json">
+      <publishTime>09/14/2019 20:28:31</publishTime>
+    </File>
+    <File Include="memento_core_angular.Views.dll">
+      <publishTime>09/14/2019 20:27:15</publishTime>
+    </File>
+    <File Include="memento_core_angular.Views.pdb">
+      <publishTime>09/14/2019 20:27:15</publishTime>
+    </File>
+    <File Include="Microsoft.CodeAnalysis.CSharp.Workspaces.dll">
+      <publishTime>08/03/2019 22:12:13</publishTime>
+    </File>
+    <File Include="Microsoft.CodeAnalysis.Workspaces.dll">
+      <publishTime>08/03/2019 22:12:07</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll">
+      <publishTime>03/02/2019 19:51:56</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Core.dll">
+      <publishTime>03/02/2019 19:52:00</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.dll">
+      <publishTime>03/02/2019 19:52:04</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll">
+      <publishTime>03/02/2019 19:52:02</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll">
+      <publishTime>03/02/2019 19:51:58</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll">
+      <publishTime>03/02/2019 19:51:56</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll">
+      <publishTime>03/02/2019 19:52:04</publishTime>
+    </File>
+    <File Include="NuGet.config">
+      <publishTime>09/08/2019 22:19:29</publishTime>
+    </File>
+    <File Include="NuGet.Frameworks.dll">
+      <publishTime>08/03/2019 22:12:11</publishTime>
+    </File>
+    <File Include="System.Composition.AttributedModel.dll">
+      <publishTime>08/03/2019 22:12:18</publishTime>
+    </File>
+    <File Include="System.Composition.Convention.dll">
+      <publishTime>08/03/2019 22:12:18</publishTime>
+    </File>
+    <File Include="System.Composition.Hosting.dll">
+      <publishTime>08/03/2019 22:12:18</publishTime>
+    </File>
+    <File Include="System.Composition.Runtime.dll">
+      <publishTime>08/03/2019 22:12:18</publishTime>
+    </File>
+    <File Include="System.Composition.TypedParts.dll">
+      <publishTime>08/03/2019 22:12:18</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>09/14/2019 20:28:31</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/bootstrap.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/bootstrap.min.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx-diagram.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx-diagram.min.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.carmine.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.carmine.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.common.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.contrast.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.contrast.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.dark.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.dark.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.darkmoon.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.darkmoon.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.darkviolet.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.darkviolet.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.greenmist.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.greenmist.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.ios7.default.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.light.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.light.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.blue.dark.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.blue.dark.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.blue.light.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.blue.light.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.lime.dark.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.lime.dark.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.lime.light.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.lime.light.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.orange.dark.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.orange.dark.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.orange.light.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.orange.light.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.purple.dark.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.purple.dark.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.purple.light.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.purple.light.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.teal.dark.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.teal.dark.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.teal.light.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.material.teal.light.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.softblue.compact.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/dx.softblue.css">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/fonts/Roboto-300.ttf">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/fonts/Roboto-300.woff">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/fonts/Roboto-300.woff2">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/fonts/Roboto-400.ttf">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/fonts/Roboto-400.woff">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/fonts/Roboto-400.woff2">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/fonts/Roboto-500.ttf">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/fonts/Roboto-500.woff">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/fonts/Roboto-500.woff2">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/icons/dxicons.ttf">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/icons/dxicons.woff">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/icons/dxicons.woff2">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/icons/dxiconsios.ttf">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/icons/dxiconsios.woff">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/icons/dxiconsios.woff2">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/icons/dxiconsmaterial.ttf">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/icons/dxiconsmaterial.woff">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/css/devextreme/icons/dxiconsmaterial.woff2">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/favicon.ico">
+      <publishTime>09/07/2019 06:22:35</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/aspnet/dx.aspnet.data.js">
+      <publishTime>07/22/2019 08:48:43</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/aspnet/dx.aspnet.mvc.js">
+      <publishTime>07/22/2019 08:48:43</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/bootstrap.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/bootstrap.min.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/cldr.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/cldr.min.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/cldr/event.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/cldr/event.min.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/cldr/supplemental.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/cldr/supplemental.min.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/cldr/unresolved.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/cldr/unresolved.min.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/dx-diagram.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/dx-diagram.min.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/dx.all.debug.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/dx.all.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/dx.viz-web.debug.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/dx.viz-web.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/dx.viz.debug.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/dx.viz.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/dx.web.debug.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/dx.web.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/globalize.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/globalize.min.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/globalize/currency.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/globalize/currency.min.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/globalize/date.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/globalize/date.min.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/globalize/message.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/globalize/message.min.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/globalize/number.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/globalize/number.min.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/jquery.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/jquery.min.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/jszip.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/jszip.min.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/localization/dx.messages.cs.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/localization/dx.messages.de.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/localization/dx.messages.el.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/localization/dx.messages.en.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/localization/dx.messages.es.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/localization/dx.messages.fi.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/localization/dx.messages.fr.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/localization/dx.messages.it.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/localization/dx.messages.ja.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/localization/dx.messages.nl.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/localization/dx.messages.pt.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/localization/dx.messages.ru.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/localization/dx.messages.sv.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/localization/dx.messages.zh.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/vectormap-data/africa.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/vectormap-data/canada.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/vectormap-data/eurasia.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/vectormap-data/europe.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/vectormap-data/usa.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/vectormap-data/world.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/vectormap-utils/dx.vectormaputils.debug.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/vectormap-utils/dx.vectormaputils.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+    <File Include="wwwroot/js/devextreme/vectormap-utils/dx.vectormaputils.node.js">
+      <publishTime>07/22/2019 08:48:45</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

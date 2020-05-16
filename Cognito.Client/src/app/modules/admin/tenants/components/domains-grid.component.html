@@ -1,0 +1,127 @@
+<dx-data-grid
+    [elementAttr]="getGridAttributes()"
+    [dataSource]="getDataSource()"
+    [showBorders]="true"
+    [wordWrapEnabled]="true"
+    (onInitialized)="onGridInitialized($event)"
+    (onInitNewRow)="onGridInitNewRow($event)"
+    (onRowInserting)="onGridRowInserting($event)"
+    (onEditingStart)="onGridEditingStart()"
+>
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-editing
+        mode="popup"
+        [allowAdding]="isSysAdmin"
+        [allowDeleting]="isSysAdmin"
+        [allowUpdating]="isSysAdmin"
+    >
+        <dxo-popup
+            title="Domain"
+            [showTitle]="true"
+            maxHeight="100%"
+            [height]="'auto'"
+            [width]="600"
+        >
+        </dxo-popup>
+        <dxo-form [colCount]="1" [customizeItem]="onGridCustomizeItem">
+            <dxi-item dataField="name" [isRequired]="true" [editorOptions]="{ maxLength: 128 }">
+                <dxo-label text="Domain Name" location="left"></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="tenant.companyName" [editorOptions]="{ disabled: true }">
+                <dxo-label text="Company Name"></dxo-label>
+            </dxi-item>
+            <dxi-item itemType="empty"></dxi-item>
+            <dxi-item name="domainAdmin" itemType="group" caption="Domain Admin" [colCount]="2">
+                <dxi-item dataField="adminFirstName" [isRequired]="true">
+                    <dxo-label text="First Name" location="left"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="adminLastName" [isRequired]="true">
+                    <dxo-label text="Last Name" location="left"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="adminEmail" [isRequired]="true" [colSpan]="2">
+                    <dxo-label text="Email" location="left"></dxo-label>
+                    <dxi-validation-rule type="email" message="Email is invalid">
+                    </dxi-validation-rule>
+                </dxi-item>
+            </dxi-item>
+            <dxi-item itemType="empty"></dxi-item>
+            <dxi-item itemType="group" caption="Licenses" [colCount]="2">
+                <dxi-item
+                    dataField="basicLicense.licenses"
+                    [isRequired]="true"
+                    [editorOptions]="editorOptions.Integer"
+                >
+                    <dxo-label text="# Basic" location="left"></dxo-label>
+                </dxi-item>
+                <dxi-item
+                    dataField="timekeeperLicense.licenses"
+                    [isRequired]="true"
+                    [editorOptions]="editorOptions.Integer"
+                >
+                    <dxo-label text="# Timekeeper" location="left"></dxo-label>
+                </dxi-item>
+            </dxi-item>
+            <dxi-item itemType="group" caption="License Price" [colCount]="1">
+                <dxi-item itemType="group" caption="Basic" [colCount]="2">
+                    <dxi-item
+                        dataField="basicLicense.price"
+                        [isRequired]="true"
+                        [editorOptions]="editorOptions.Currency.extend({ disabled: true })"
+                    >
+                        <dxo-label text="Price $" location="left"></dxo-label>
+                    </dxi-item>
+                    <dxi-item
+                        dataField="basicLicense.discount"
+                        [isRequired]="true"
+                        [editorOptions]="editorOptions.Percentage"
+                    >
+                        <dxo-label text="Discount %" location="left"></dxo-label>
+                    </dxi-item>
+                </dxi-item>
+                <dxi-item itemType="group" caption="Timekeeper" [colCount]="2">
+                    <dxi-item
+                        dataField="timekeeperLicense.price"
+                        [isRequired]="true"
+                        [editorOptions]="editorOptions.Currency.extend({ disabled: true })"
+                    >
+                        <dxo-label text="Price $" location="left"></dxo-label>
+                    </dxi-item>
+                    <dxi-item
+                        dataField="timekeeperLicense.discount"
+                        [isRequired]="true"
+                        [editorOptions]="editorOptions.Percentage"
+                    >
+                        <dxo-label text="Discount %" location="left"></dxo-label>
+                    </dxi-item>
+                </dxi-item>
+            </dxi-item>
+        </dxo-form>
+    </dxo-editing>
+    <dxo-selection mode="none"></dxo-selection>
+
+    <dxi-column dataField="name"></dxi-column>
+    <dxi-column dataField="domainAdmins" caption="Domain Admin"></dxi-column>
+    <dxi-column dataField="tenant.companyName" [visible]="false"></dxi-column>
+    <dxi-column dataField="basicLicense.licenses" caption="# Basic" dataType="number"></dxi-column>
+    <dxi-column
+        dataField="timekeeperLicense.licenses"
+        caption="# Timekeeper"
+        dataType="number"
+    ></dxi-column>
+    <dxi-column dataField="adminFirstName" [visible]="false"></dxi-column>
+    <dxi-column dataField="adminLastName" [visible]="false"></dxi-column>
+    <dxi-column dataField="adminEmail" [visible]="false"></dxi-column>
+
+    <dxi-column dataField="basicLicense.price" dataType="number" [visible]="false"></dxi-column>
+    <dxi-column
+        dataField="timekeeperLicense.price"
+        dataType="number"
+        [visible]="false"
+    ></dxi-column>
+    <dxi-column dataField="basicLicense.discount" dataType="number" [visible]="false"></dxi-column>
+    <dxi-column
+        dataField="timekeeperLicense.discount"
+        dataType="number"
+        [visible]="false"
+    ></dxi-column>
+</dx-data-grid>

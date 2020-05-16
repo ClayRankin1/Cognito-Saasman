@@ -1,0 +1,73 @@
+<span id="title">Contacts</span>
+<div id="contactsgrid">
+    <dx-button
+        id="multi_delete"
+        text=""
+        icon="clear"
+        [disabled]="!selectedItemKeys.length"
+        (onClick)="deleteRecords()"
+    >
+    </dx-button>
+    <dx-button id="btn_clear" text="Clear" icon="" [width]="100" (onClick)="clear()"></dx-button>
+
+    <dx-data-grid
+        id="contactsContainer"
+        [dataSource]="dataSource"
+        keyExpr="ContactID"
+        [showBorders]="true"
+        (onInitialized)="saveGridInstance($event)"
+        (onContentReady)="contentReady($event)"
+        (onSelectionChanged)="selectionChanged($event)"
+    >
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+        <dxo-paging [enabled]="false"></dxo-paging>
+        <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true">
+            <dxo-popup title="Tasks Edit" [showTitle]="true" [width]="750" [height]="900">
+                <dxo-form>
+                    <dxi-item itemType="group" [colCount]="1" [colSpan]="1">
+                        <dxi-item dataField="FirstName"></dxi-item>
+                        <dxi-item dataField="LastName"></dxi-item>
+                        <dxi-item dataField="Name"></dxi-item>
+                        <dxi-item dataField="FormalName"></dxi-item>
+                        <dxi-item dataField="PrTitle"></dxi-item>
+                        <dxi-item dataField="PrEntity"></dxi-item>
+                        <dxi-item dataField="PrAddress"></dxi-item>
+                        <dxi-item dataField="PrCity"></dxi-item>
+                        <dxi-item dataField="PrRegion"></dxi-item>
+                        <dxi-item dataField="PrPostalcode"></dxi-item>
+                        <dxi-item
+                            dataField="Notes"
+                            editorType="dxTextArea"
+                            [colSpan]="1"
+                            [editorOptions]="{ height: 100 }"
+                        >
+                        </dxi-item>
+                        <dxi-item dataField="PrCountry"></dxi-item>
+                        <dxi-item dataField="PrPhone"></dxi-item>
+                        <dxi-item dataField="PrEmail"></dxi-item>
+                        <dxi-item dataField="KeyName"></dxi-item>
+                    </dxi-item>
+                </dxo-form>
+            </dxo-popup>
+        </dxo-editing>
+        <dxo-selection mode="multiple"></dxo-selection>
+
+        <dxi-column dataField="contactID" [formItem]="{ visible: false }"></dxi-column>
+        <dxi-column dataField="FirstName"></dxi-column>
+        <dxi-column dataField="LastName"></dxi-column>
+        <dxi-column dataField="Name"></dxi-column>
+        <dxi-column dataField="FormalName"></dxi-column>
+        <dxi-column dataField="PrTitle"></dxi-column>
+        <dxi-column dataField="PrEntity"></dxi-column>
+        <dxi-column dataField="PrAddress"></dxi-column>
+        <dxi-column dataField="PrCity"></dxi-column>
+        <dxi-column dataField="PrRegion"></dxi-column>
+        <dxi-column dataField="PrPostalcode"></dxi-column>
+        <dxi-column dataField="PrCountry"></dxi-column>
+        <dxi-column dataField="PrPhone"></dxi-column>
+        <dxi-column dataField="PrEmail"></dxi-column>
+        <dxi-column dataField="Notes"></dxi-column>
+        <dxi-column dataField="KeyName"></dxi-column>
+        <dxi-column dataField="Added" dataType="date" [formItem]="{ visible: false }"></dxi-column>
+    </dx-data-grid>
+</div>

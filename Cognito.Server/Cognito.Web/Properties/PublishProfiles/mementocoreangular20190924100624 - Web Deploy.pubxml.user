@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAd1244Yt9jE+xdbPsC0MGXwAAAAACAAAAAAAQZgAAAAEAACAAAACxKDAgrq82zjw2PZ92pgSau4LrDB9eYDGsWgtDBhoKOAAAAAAOgAAAAAIAACAAAAAh6gXIKE4qJBbAVvJFE5rbWUBbvYfjz2najiYsZ/dOj4AAAAAG04jRNQ3pu46YvSwF5NguEBGfZx3G688406VcV+r5dqThYiJUIW0PnFtrX6Vy0eXXuB8Yw2cNc65eFcemHEUZ1QCtV6Or5wc7pO738T1GjEvC4oEh4HPvh+aObDqEQ6CYhGkBj03zK0GFZByGwRRfRtbHe/hzSnDAGNhc9QjL6EAAAACbK5qDj0+coYTRUeyFo84TeJTWAVd/9YU/GaQvsmFDqDyTagv7EBo1WquvEIBZ3yc1n6QZFFCbs7SaZ5CWiPp6</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=tcp:s04.everleap.com%3bInitial Catalog=DB_1944_clearpoint%3bPersist Security Info=True%3bUser ID=DB_1944_clearpoint_user%3bPassword=y073707</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

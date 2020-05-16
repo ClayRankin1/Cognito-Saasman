@@ -1,0 +1,49 @@
+<span id="title">Links</span>
+<div id="linksgrid">
+    <dx-button
+        id="multi_delete"
+        text=""
+        icon="clear"
+        [disabled]="!selectedItemKeys.length"
+        (onClick)="deleteRecords()"
+    >
+    </dx-button>
+    <dx-button id="btn_clear" text="Clear" icon="" [width]="100" (onClick)="clear()"></dx-button>
+
+    <dx-data-grid
+        id="linksContainer"
+        [dataSource]="dataSource"
+        keyExpr="LinkID"
+        [showBorders]="true"
+        (onInitialized)="saveGridInstance($event)"
+        (onContentReady)="contentReady($event)"
+        (onSelectionChanged)="selectionChanged($event)"
+    >
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+        <dxo-paging [enabled]="false"></dxo-paging>
+        <dxo-editing
+            mode="batch"
+            [allowUpdating]="true"
+            [selectTextOnEditStart]="selectTextOnEditStart"
+            [startEditAction]="startEditAction"
+        >
+        </dxo-editing>
+        <dxo-selection mode="multiple"></dxo-selection>
+
+        <dxi-column dataField="LinkID" caption="No"></dxi-column>
+        <dxi-column dataField="LeftID"></dxi-column>
+        <dxi-column dataField="LeftType"></dxi-column>
+        <dxi-column dataField="LeftName"></dxi-column>
+        <dxi-column dataField="LeftInfo"></dxi-column>
+        <dxi-column dataField="LinkName"></dxi-column>
+        <dxi-column dataField="RightInfo"></dxi-column>
+        <dxi-column dataField="RightName"></dxi-column>
+        <dxi-column dataField="RightType"></dxi-column>
+        <dxi-column dataField="RightID"></dxi-column>
+        <dxi-column dataField="StartDate" dataType="date"></dxi-column>
+        <dxi-column dataField="EndDate" dataType="date"></dxi-column>
+        <dxi-column dataField="IsPrimary"></dxi-column>
+        <dxi-column dataField="UseOnce"></dxi-column>
+        <dxi-column dataField="DispOrder"></dxi-column>
+    </dx-data-grid>
+</div>

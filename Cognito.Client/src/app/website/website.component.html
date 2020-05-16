@@ -1,0 +1,127 @@
+<div class="websiteDiv">
+    <div id="dropareaid" class="droparea">
+        <div class="content">
+            <svg
+                class="box_icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="43"
+                viewBox="0 0 50 43"
+            >
+                <path
+                    d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z"
+                ></path>
+            </svg>
+        </div>
+    </div>
+    <div id="draggedtilesid" class="draggedtiles">
+        <!-- websiteId: 1, name: "test", address: "https://mail.yahoo.com/d/folders/1?reason=norrinuser", actId: 87958 -->
+        <dx-data-grid
+            id="draggedlist"
+            [dataSource]="savedUrls"
+            [showBorders]="true"
+            (onInitialized)="saveGridInstance($event)"
+            (onInitNewRow)="onInitNewRow($event)"
+            [allowColumnReordering]="true"
+            [allowColumnResizing]="true"
+            (onRowRemoving)="deleteRow($event)"
+            (onRowUpdating)="updateRow($event)"
+            (onRowInserted)="saveNewRow($event)"
+            (onEditingStart)="onEditingStart()"
+        >
+            <dxo-editing
+                mode="popup"
+                refreshMode="reshape"
+                [allowAdding]="true"
+                [allowUpdating]="true"
+                [allowDeleting]="true"
+                [useIcons]="true"
+            >
+                <dxo-popup
+                    [visible]="false"
+                    title="Edit Website"
+                    [showTitle]="true"
+                    [width]="600"
+                    [height]="225"
+                >
+                </dxo-popup>
+            </dxo-editing>
+
+            <dxo-selection
+                selectAllMode="page"
+                showCheckBoxesMode="onClick"
+                mode="multiple"
+            ></dxo-selection>
+            <dxi-column dataField="name" caption="Name"></dxi-column>
+            <dxi-column dataField="url" caption="URL" cellTemplate="urlTemplate">
+                <div *dxTemplate="let data of 'urlTemplate'">
+                    <a [href]="data.value" target="_blank">{{ data.value }}</a>
+                </div>
+            </dxi-column>
+            <dxi-column type="buttons" [width]="110">
+                <dxi-button name="edit" (click)="usePopUp()"></dxi-button>
+                <dxi-button name="delete"></dxi-button>
+            </dxi-column>
+        </dx-data-grid>
+    </div>
+
+    <dx-popup
+        [showTitle]="true"
+        title="Add Website"
+        [dragEnabled]="true"
+        [closeOnOutsideClick]="true"
+        [(visible)]="popupVisible"
+        [width]="600"
+        [height]="225"
+    >
+        <form action="your-action" (submit)="namesend()">
+            <dx-form
+                id=""
+                [formData]=""
+                [readOnly]="false"
+                [showColonAfterLabel]="true"
+                [showValidationSummary]="true"
+            >
+                <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                    <dxi-item
+                        dataField="name"
+                        [editorOptions]="{ onValueChanged: nameChanged, value: '' }"
+                    ></dxi-item>
+                    <dxi-item dataField="URL" [editorOptions]="{ value: url }"></dxi-item>
+                </dxi-item>
+
+                <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                    <dxi-item
+                        itemType="button"
+                        horizontalAlignment="right"
+                        verticalAlignment="bottom"
+                        cssClass="popup-value"
+                        [buttonOptions]="{
+                            text: 'Save',
+                            stylingMode: 'outlined',
+                            type: 'default',
+                            useSubmitBehavior: true,
+                            width: 100
+                        }"
+                    >
+                    </dxi-item>
+
+                    <dxi-item
+                        itemType="button"
+                        horizontalAlignment="right"
+                        verticalAlignment="bottom"
+                        cssClass="popup-value"
+                        [buttonOptions]="{
+                            text: 'Cancel',
+                            stylingMode: 'outlined',
+                            type: 'default',
+                            width: 100,
+                            onClick: onCancelClick
+                        }"
+                    >
+                    </dxi-item>
+                </dxi-item>
+            </dx-form>
+        </form>
+    </dx-popup>
+</div>

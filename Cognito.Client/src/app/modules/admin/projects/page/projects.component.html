@@ -1,0 +1,34 @@
+<dx-data-grid
+    id="projectsGrid"
+    [dataSource]="dataSource"
+    [showBorders]="true"
+    [wordWrapEnabled]="true"
+    (onInitialized)="onGridInitialized($event)"
+    (onContentReady)="onGridContentReady($event)"
+    (onCellPrepared)="onGridCellPrepared($event)"
+>
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-editing mode="popup" [allowAdding]="false" [allowDeleting]="false" [allowUpdating]="false">
+    </dxo-editing>
+    <dxo-selection mode="none"></dxo-selection>
+
+    <dxi-column dataField="name" caption="Tenant Name - Domain Name" [calculateDisplayValue]="calculateDomainName"></dxi-column>
+    <dxi-column dataField="tenant.name" [visible]="false"></dxi-column>
+    <dxi-column type="buttons">
+        <dxi-button
+            name="addProject"
+            icon="plus"
+            hint="Add Project"
+            [onClick]="addProjectRow"
+        ></dxi-button>
+    </dxi-column>
+    <dxo-master-detail [enabled]="true" template="masterDetail" [autoExpandAll]="hasOnlyOneDomain"></dxo-master-detail>
+
+    <div *dxTemplate="let domain of 'masterDetail'">
+        <div class="master-detail-caption">Projects</div>
+         <app-projects-grid
+            [gridId]="getProjectsGridId(domain)"
+            [domainRow]="domain"
+        ></app-projects-grid>
+    </div>
+</dx-data-grid>

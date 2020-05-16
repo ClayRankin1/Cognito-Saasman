@@ -1,0 +1,4 @@
+**/dist
+**/node_modules
+**/wv-resources
+src/polyfills.ts

@@ -1,0 +1,101 @@
+<div
+    class="homepage-three-panel-content"
+    id="homepage-three-panel"
+    [ngClass]="{
+        container0: panellayout == 0,
+        container1: panellayout == 1,
+        container2: panellayout == 2,
+        container3: panellayout == 3
+    }"
+>
+    <div
+        class="box"
+        id="tasksmaindiv"
+        [ngClass]="{ tasksthree: tasksthree, taskstwo: taskstwo, tasksone: tasksone }"
+        [ngStyle]="{ display: !this.istasksPressed ? 'none' : 'block' }"
+    >
+        <app-tasks (gridClear)="gridCleaFromTask()"></app-tasks>
+    </div>
+
+    <div
+        class="box"
+        id="itemsmaindiv"
+        [ngClass]="{ itemsthree: itemsthree, itemstwo: itemstwo, itemsone: itemsone }"
+        [ngStyle]="{ display: !this.isitemsPressed ? 'none' : 'block' }"
+    >
+        <app-details [gridClearEvent]="gridClear.asObservable()"></app-details>
+    </div>
+
+    <div
+        class="box"
+        id="tabsmaindiv"
+        [ngClass]="{ tabsthree: tabsthree, tabstwo: tabstwo, tabsone: tabsone }"
+        [ngStyle]="{ display: !this.istabsPressed ? 'none' : 'block' }"
+    >
+        <div class="panel-title">Related Information</div>
+        <dx-tab-panel
+            #tabPanel
+            [loop]="true"
+            [animationEnabled]="true"
+            [swipeEnabled]="true"
+            [elementAttr]="{ id: 'tabpaneldiv', class: 'gridDiv' }"
+            (onContentReady)="contentReady($event)"
+            (onSelectionChanged)="selectionChanged($event)"
+            onItemClick="onItemClick($event)"
+        >
+            <dxi-item title="Points">
+                <div class="tabpanel-item">
+                    <div>
+                        <p>
+                            <Points></Points>
+                        </p>
+                    </div>
+                </div>
+            </dxi-item>
+
+            <dxi-item title="Documents">
+                <div class="tabpanel-item">
+                    <div>
+                        <p>
+                            <app-documents></app-documents>
+                        </p>
+                    </div>
+                </div>
+            </dxi-item>
+
+            <dxi-item title="Contacts">
+                <div class="tabpanel-item">
+                    <div>
+                        <p>
+                            <app-contact></app-contact>
+                        </p>
+                    </div>
+                </div>
+            </dxi-item>
+            <dxi-item title="WebSites">
+                <div class="tabpanel-item">
+                    <div>
+                        <p>
+                            <app-website (open)="onOpen($event)" *ngIf="!isClicked"></app-website>
+                            <iframe
+                                [src]="webUrl"
+                                *ngIf="isClicked"
+                                height="100%"
+                                width="100%"
+                            ></iframe>
+                        </p>
+                    </div>
+                </div>
+            </dxi-item>
+            <!-- <dxi-item title="Reports">
+        <div class="tabpanel-item">
+          <div>
+            <p>
+              <app-report-viewer></app-report-viewer>
+            </p>
+          </div>
+        </div>
+      </dxi-item> -->
+        </dx-tab-panel>
+    </div>
+</div>

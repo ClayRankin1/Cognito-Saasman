@@ -1,0 +1,38 @@
+<div id="projectsgrid">
+    <dx-button
+        id="multi_delete"
+        text=""
+        icon="clear"
+        [height]="35"
+        [disabled]="!selectedItemKeys.length"
+        (onClick)="deleteRecords()"
+    >
+    </dx-button>
+    <dx-data-grid
+        id="projectsContainer"
+        [dataSource]="dataSource"
+        keyExpr="MatterID"
+        [showBorders]="true"
+        (onInitialized)="saveGridInstance($event)"
+        (onContentReady)="contentReady($event)"
+        (onSelectionChanged)="selectionChanged($event)"
+    >
+        <dxo-paging [enabled]="false"></dxo-paging>
+        <dxo-editing
+            mode="batch"
+            [allowUpdating]="true"
+            [selectTextOnEditStart]="selectTextOnEditStart"
+            [startEditAction]="startEditAction"
+        >
+        </dxo-editing>
+        <dxo-selection mode="multiple"></dxo-selection>
+
+        <dxi-column dataField="MatterNo" caption="No"></dxi-column>
+        <dxi-column dataField="FullName"></dxi-column>
+        <dxi-column dataField="Name"></dxi-column>
+        <dxi-column dataField="OwnerID"></dxi-column>
+        <dxi-column dataField="Type"></dxi-column>
+        <dxi-column dataField="IsArchived"></dxi-column>
+        <dxi-column dataField="DomainID"></dxi-column>
+    </dx-data-grid>
+</div>

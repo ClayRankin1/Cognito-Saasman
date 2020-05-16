@@ -1,0 +1,73 @@
+:host ::ng-deep #title {
+    color: #444;
+    font-size: 21px;
+    font-weight: 400;
+}
+:host ::ng-deep .grid {
+    width: 45%;
+    float: left;
+}
+
+:host ::ng-deep #btn_link {
+    float: left;
+}
+
+:host ::ng-deep #btn_userclear {
+    top: 20px;
+    margin-left: 7px;
+    border-radius: 20px;
+}
+
+:host ::ng-deep #btn_projectclear {
+    top: 20px;
+    margin-left: 7px;
+    border-radius: 20px;
+}
+
+@media screen and (max-height: 600px) {
+    #usersContainer {
+        height: 350px;
+    }
+    #btn_link {
+        top: 150px;
+    }
+    #projectsContainer {
+        height: 350px;
+    }
+}
+
+@media screen and (max-height: 800px) and (min-height: 601px) {
+    #usersContainer {
+        height: 550px;
+    }
+    #btn_link {
+        top: 250px;
+    }
+    #projectsContainer {
+        height: 550px;
+    }
+}
+
+@media screen and (max-height: 1020px) and (min-height: 801px) {
+    #usersContainer {
+        height: 750px;
+    }
+    #btn_link {
+        top: 350px;
+    }
+    #projectsContainer {
+        height: 750px;
+    }
+}
+
+@media screen and (max-height: 1200px) and (min-height: 1021px) {
+    #usersContainer {
+        height: 950px;
+    }
+    #btn_link {
+        top: 450px;
+    }
+    #projectsContainer {
+        height: 950px;
+    }
+}

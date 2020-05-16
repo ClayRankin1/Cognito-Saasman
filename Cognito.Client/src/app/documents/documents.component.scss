@@ -1,0 +1,24 @@
+.row-detail {
+    margin-left: 45px;
+}
+
+.row-detail table tr td {
+    padding: 0px;
+}
+
+.title {
+    color: #909090;
+}
+
+:host ::ng-deep #documentsdrawer .fileuploader {
+    height: 350px;
+    margin-top: 30px;
+}
+:host ::ng-deep #documentsdrawer #clientGrid .row-detail .largetitle {
+    vertical-align: top;
+}
+:host ::ng-deep #documentsdrawer #clientGrid .row-detail .largetext {
+    white-space: pre-wrap;
+    vertical-align: top;
+    word-break: break-all;
+}

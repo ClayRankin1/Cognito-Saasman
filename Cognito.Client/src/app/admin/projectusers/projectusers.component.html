@@ -1,0 +1,52 @@
+<div id="usersgrid" class="grid">
+    <span id="title">Users</span>
+    <dx-button
+        id="btn_userclear"
+        text="Clear"
+        icon=""
+        [width]="100"
+        (onClick)="userclear()"
+    ></dx-button>
+    <dx-data-grid
+        id="usersContainer"
+        [dataSource]="users"
+        keyExpr="userID"
+        [showBorders]="true"
+        (onInitialized)="getUserGridInstance($event)"
+        (onContentReady)="userscontentReady($event)"
+        (onSelectionChanged)="selectionChanged($event)"
+    >
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+        <dxo-paging [enabled]="false"></dxo-paging>
+        <dxo-selection mode="multiple"></dxo-selection>
+
+        <dxi-column dataField="username" caption="User Name"></dxi-column>
+    </dx-data-grid>
+</div>
+
+<dx-button id="btn_link" text="Link" icon="" [width]="150" (onClick)="link()"> </dx-button>
+
+<div id="projectsgrid" class="grid">
+    <span id="title">To Projects</span>
+    <dx-button
+        id="btn_projectclear"
+        text="Clear"
+        icon=""
+        [width]="100"
+        (onClick)="projectclear()"
+    ></dx-button>
+    <dx-data-grid
+        id="projectsContainer"
+        [dataSource]="projects"
+        keyExpr="matterID"
+        [showBorders]="true"
+        (onContentReady)="projectscontentReady($event)"
+    >
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+        <dxo-paging [enabled]="false"></dxo-paging>
+        <dxo-selection mode="multiple"></dxo-selection>
+
+        <dxi-column dataField="name" caption="Name"></dxi-column>
+        <dxi-column dataField="fullname" caption="Full Name"></dxi-column>
+    </dx-data-grid>
+</div>

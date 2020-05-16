@@ -1,0 +1,9 @@
+:host ::ng-deep #projectsContainer .dx-command-select {
+    width: 120px !important;
+    min-width: 120px !important;
+}
+
+:host ::ng-deep #multi_delete {
+    top: 20px;
+    margin-left: 7px;
+}

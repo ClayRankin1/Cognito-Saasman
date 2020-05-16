@@ -1,0 +1,72 @@
+<dx-menu
+    #pointsMenu
+    [dataSource]="menulist"
+    displayExpr="name"
+    orientation="horizontal"
+    submenuDirection="auto"
+    [hideSubmenuOnMouseLeave]="false"
+    [adaptivityEnabled]="false"
+    (onItemClick)="onMenuClick($event)"
+>
+</dx-menu>
+<dx-tree-list
+    #treeList
+    id="points"
+    [dataSource]="dataSource"
+    keyExpr="id"
+    parentIdExpr="parentId"
+    (onSelectionChanged)="selectionChanged($event)"
+    [wordWrapEnabled]="true"
+    [showBorders]="true"
+    [allowColumnResizing]="true"
+    [allowColumnReordering]="true"
+    (onToolbarPreparing)="onToolbarPreparing($event)"
+>
+    <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+        <dxo-popup title="Point" [width]="700" [height]="400"></dxo-popup>
+        <dxo-form>
+            <dxi-item itemType="group" [colCount]="1" [colSpan]="2">
+                <dxi-item
+                    dataField="text"
+                    editorType="dxTextArea"
+                    [colSpan]="1"
+                    [editorOptions]="{ height: 250 }"
+                >
+                </dxi-item>
+            </dxi-item>
+        </dxo-form>
+    </dxo-editing>
+    <dxo-row-dragging
+        [onReorder]="onReorder"
+        [onDragChange]="onDragChange"
+        [allowDropInsideItem]="true"
+        [allowReordering]="true"
+        [showDragIcons]="true"
+    ></dxo-row-dragging>
+    <dxo-search-panel [visible]="true" width="250"></dxo-search-panel>
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+    <dxo-selection mode="single"></dxo-selection>
+    <dxi-column
+        dataField="count"
+        caption="Count"
+        dataType="number"
+        [allowEditing]="false"
+        [visible]="false"
+        sortOrder="asc"
+    >
+    </dxi-column>
+    <dxi-column
+        dataField="label"
+        caption="Point"
+        dataType="string"
+        [allowEditing]="false"
+        [width]="150"
+    >
+    </dxi-column>
+    <dxi-column
+        dataField="text"
+        caption="Description"
+        dataType="string"
+        [allowEditing]="true"
+    ></dxi-column>
+</dx-tree-list>

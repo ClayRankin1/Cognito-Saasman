@@ -1,0 +1,24 @@
+.row-detail {
+    margin-left: 45px;
+}
+
+.detail-table {
+    width: 45%;
+    float: left;
+}
+
+.title {
+    color: #909090;
+}
+
+.v-line {
+    width: 3%;
+    float: left;
+    border-left: 1px solid #909090;
+    height: 96px;
+}
+
+:host ::ng-deep #contactsgrid .row-detail .largetext {
+    vertical-align: top;
+    white-space: pre-wrap;
+}

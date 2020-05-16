@@ -1,0 +1,11 @@
+@import '../../styles.scss';
+
+.admin-section {
+    margin: 1em;
+
+    .title {
+        color: $light-gray;
+        font-size: 21px;
+        font-weight: 400;
+    }
+}

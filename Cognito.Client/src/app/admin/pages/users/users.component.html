@@ -1,0 +1,35 @@
+<div class="users-grid">
+    <dx-data-grid id="gridContainer" [dataSource]="dataSource" [showBorders]="true">
+        <dxo-editing mode="popup" [allowAdding]="true" [allowDeleting]="true">
+            <dxo-popup title="User" [showTitle]="true" [height]="400" [width]="400"> </dxo-popup>
+            <dxo-form>
+                <dxi-item dataField="userName" [colSpan]="2"></dxi-item>
+                <dxi-item dataField="email" [colSpan]="2"></dxi-item>
+                <dxi-item dataField="domainId" [colSpan]="2"></dxi-item>
+            </dxo-form>
+        </dxo-editing>
+
+        <dxi-column dataField="userName" dataType="string">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>
+        <dxi-column dataField="email" dataType="string">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+            <dxi-validation-rule type="email"></dxi-validation-rule>
+        </dxi-column>
+        <dxi-column dataField="domainId" caption="Domain">
+            <dxo-lookup
+                [dataSource]="domainsDataSource?.store()"
+                displayExpr="label"
+                valueExpr="id"
+            ></dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="contactId" caption="Contact">
+            <dxo-lookup
+                [dataSource]="contactsDataSource?.store()"
+                displayExpr="name"
+                valueExpr="id"
+            ></dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="isEmailConfirmed"></dxi-column>
+    </dx-data-grid>
+</div>

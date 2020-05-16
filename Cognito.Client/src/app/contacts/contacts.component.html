@@ -1,0 +1,207 @@
+<div id="gridDiv">
+    <div>
+        <dx-menu
+            #menu
+            [dataSource]="menulist"
+            displayExpr="name"
+            width="100%"
+            orientation="horizontal"
+            submenuDirection="auto"
+            [hideSubmenuOnMouseLeave]="false"
+            [adaptivityEnabled]="false"
+            (onItemClick)="MenuClick($event)"
+        >
+        </dx-menu>
+    </div>
+
+    <dx-data-grid
+        id="contactsgrid"
+        #dataGridRef
+        [dataSource]="dataSource"
+        [remoteOperations]="false"
+        height="100%"
+        showBorders="true"
+        (onSelectionChanged)="selectionChanged($event)"
+        (onContentReady)="contentReady($event)"
+        (onInitNewRow)="onInitNewRow($event)"
+        (onInitialized)="onInitialized($event)"
+        (onRowClick)="onRowClick($event)"
+        [masterDetail]="{ enabled: false, template: 'detail' }"
+        (onCellPrepared)="onCellPrepared($event)"
+        [allowColumnReordering]="true"
+        [allowColumnResizing]="true"
+        (onToolbarPreparing)="onToolbarPreparing($event)"
+        (onRowUpdating)="onRowUpdating($event)"
+    >
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-selection mode="multiple"></dxo-selection>
+        <dxo-column-chooser
+            [enabled]="true"
+            hint="Column Chooser"
+            mode="select"
+        ></dxo-column-chooser>
+
+        <dxo-editing
+            mode="popup"
+            [allowAdding]="true"
+            [allowUpdating]="true"
+            [allowDeleting]="true"
+        >
+            <dxo-popup title="Contacts Info" [showTitle]="true" [width]="700"></dxo-popup>
+            <dxo-form>
+                <dxi-item itemType="group" [colCount]="1" [colSpan]="2">
+                    <dxi-item dataField="lastName"></dxi-item>
+                    <dxi-item dataField="firstName"></dxi-item>
+                    <dxi-item dataField="formalName"></dxi-item>
+                    <dxi-item dataField="title"></dxi-item>
+                    <dxi-item dataField="entity"></dxi-item>
+                    <dxi-item dataField="city"></dxi-item>
+                    <dxi-item dataField="address"></dxi-item>
+                    <dxi-item dataField="region"></dxi-item>
+                    <dxi-item dataField="phone"></dxi-item>
+                    <dxi-item dataField="email"></dxi-item>
+                    <dxi-item
+                        dataField="notes"
+                        editorType="dxTextArea"
+                        [colSpan]="1"
+                        [editorOptions]="{ height: 100 }"
+                    >
+                    </dxi-item>
+                </dxi-item>
+            </dxo-form>
+        </dxo-editing>
+        <dxi-column dataField="lastName">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+            <dxi-validation-rule
+                type="pattern"
+                [pattern]="namePattern"
+                message="Do not use digits in the Name"
+            >
+            </dxi-validation-rule>
+        </dxi-column>
+
+        <dxi-column dataField="firstName">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+            <dxi-validation-rule
+                type="pattern"
+                [pattern]="namePattern"
+                message="Do not use digits in the Name"
+            >
+            </dxi-validation-rule>
+        </dxi-column>
+
+        <dxi-column dataField="formalName" [visible]="false">
+            <dxi-validation-rule
+                type="pattern"
+                [pattern]="namePattern"
+                message="Do not use digits in the Name"
+            >
+            </dxi-validation-rule>
+        </dxi-column>
+
+        <dxi-column dataField="title" [visible]="false"> </dxi-column>
+
+        <dxi-column dataField="entity" [visible]="false"> </dxi-column>
+
+        <dxi-column dataField="city" [visible]="false">
+            <dxi-validation-rule
+                type="pattern"
+                [pattern]="cityPattern"
+                message="Do not use digits in the City"
+            >
+            </dxi-validation-rule>
+        </dxi-column>
+
+        <dxi-column dataField="address" [visible]="false"> </dxi-column>
+
+        <dxi-column dataField="region" [visible]="false"> </dxi-column>
+
+        <dxi-column
+            dataField="phone"
+            helpText="Enter the phone number in USA phone format"
+            [editorOptions]="{
+                mask: '+1 (X00) 000-0000',
+                maskRules: phoneRules,
+                useMaskedValue: true,
+                maskInvalidMessage: 'The phone must have a correct USA phone format'
+            }"
+        >
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+            <dxi-validation-rule
+                type="pattern"
+                [pattern]="phonePattern"
+                message="The phone must have a correct USA phone format"
+            >
+            </dxi-validation-rule>
+        </dxi-column>
+
+        <dxi-column dataField="email">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+            <dxi-validation-rule type="email" message="Email is invalid"> </dxi-validation-rule>
+        </dxi-column>
+
+        <dxi-column dataField="notes" caption="Note" [visible]="false"> </dxi-column>
+
+        <div *dxTemplate="let list of 'detail'">
+            <div class="row-detail">
+                <table class="detail-table" height="100px">
+                    <tr>
+                        <td width="130" class="title">
+                            <img class="detail-icon" src="../../assets/icons/formal-name.png" />
+                            Formal Name
+                        </td>
+                        <td width="200">{{ list.data.formalName }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/entity.png" />
+                            Entity
+                        </td>
+                        <td>{{ list.data.prentity }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/state.png" />
+                            State
+                        </td>
+                        <td>{{ list.data.prpostalCode }}</td>
+                    </tr>
+                </table>
+                <div class="v-line"></div>
+                <table height="100px">
+                    <tr>
+                        <td width="130" class="title">
+                            <img class="detail-icon" src="../../assets/icons/title.png" />
+                            Title
+                        </td>
+                        <td width="200">{{ list.data.prtitle }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/city.png" />
+                            City
+                        </td>
+                        <td>{{ list.data.prcity }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/zip.png" />
+                            Zip
+                        </td>
+                        <td>{{ list.data.zip }}</td>
+                    </tr>
+                </table>
+                <table height="35px">
+                    <tr>
+                        <td class="title largetext" width="115">
+                            <img class="detail-icon" src="../../assets/icons/note.png" />
+                            Note
+                        </td>
+                        <td class="largetext" width="460">{{ list.data.notes }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </dx-data-grid>
+</div>

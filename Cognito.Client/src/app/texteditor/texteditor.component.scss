@@ -1,0 +1,9 @@
+:host ::ng-deep #back_btn {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+}
+:host ::ng-deep #back_btn:hover {
+    cursor: pointer;
+    color: #005eb8;
+}

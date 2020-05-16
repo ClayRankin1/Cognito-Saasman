@@ -1,0 +1,229 @@
+<div class="panel-title">Details</div>
+<div class="gridDiv">
+    <dx-menu
+        class="item-menu"
+        #menu
+        [dataSource]="menulist"
+        displayExpr="name"
+        orientation="horizontal"
+        submenuDirection="auto"
+        [hideSubmenuOnMouseLeave]="false"
+        [adaptivityEnabled]="false"
+        (onItemClick)="MenuClick($event)"
+    >
+    </dx-menu>
+    <dx-data-grid
+        #datagrid
+        id="detailsgrid"
+        keyExpr="id"
+        [dataSource]="dataSource"
+        [remoteOperations]="false"
+        showBorders="true"
+        (onInitNewRow)="onInitNewRow($event)"
+        (onRowClick)="onRowClick($event)"
+        (onInitialized)="onInitialized($event)"
+        (onSelectionChanged)="selectionChanged($event)"
+        (onContentReady)="contentReady($event)"
+        (onToolbarPreparing)="onToolbarPreparing($event)"
+        (onEditorPreparing)="onEditorPreparing($event)"
+        [masterDetail]="{ enabled: false, template: 'detail' }"
+        [wordWrapEnabled]="true"
+        (onEditingStart)="editstart($event)"
+        [allowColumnReordering]="true"
+        [allowColumnResizing]="true"
+        (onRowUpdated)="onRowUpdated($event)"
+        (onRowUpdating)="onRowUpdating($event)"
+    >
+        <dxo-column-chooser
+            [enabled]="true"
+            hint="Column Chooser"
+            mode="select"
+        ></dxo-column-chooser>
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+        <dxo-selection mode="multiple"></dxo-selection>
+        <dxo-paging [enabled]="false"></dxo-paging>
+        <dxo-scrolling columnRenderingMode="virtual"></dxo-scrolling>
+        <dxo-filter-row [visible]="filterVisible"></dxo-filter-row>
+
+        <dxo-editing
+            mode="popup"
+            [allowAdding]="true"
+            [allowUpdating]="true"
+            [allowDeleting]="true"
+        >
+            <dxo-popup
+                [showTitle]="true"
+                [width]="700"
+                [toolbarItems]="[
+                    {
+                        widget: 'dxButton',
+                        location: 'center',
+                        options: {
+                            text: 'Save',
+                            icon: 'save'
+                        },
+                        toolbar: 'bottom',
+                        onClick: onSave
+                    },
+                    {
+                        widget: 'dxButton',
+                        location: 'center',
+                        options: {
+                            text: 'Split',
+                            icon: 'equal',
+                            visible: false
+                        },
+                        toolbar: 'bottom',
+                        onClick: onSplit
+                    },
+                    {
+                        widget: 'dxButton',
+                        location: 'center',
+                        options: {
+                            text: 'Cancel',
+                            icon: 'close'
+                        },
+                        toolbar: 'bottom',
+                        onClick: onCancel
+                    }
+                ]"
+            >
+            </dxo-popup>
+            <dxo-form>
+                <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                    <dxi-item
+                        dataField="detail"
+                        editorType="dxTextArea"
+                        [colSpan]="2"
+                        [editorOptions]="{ height: 250, onChange: onDetailValueChanged }"
+                    >
+                    </dxi-item>
+                    <dxi-item dataField="subject" [colSpan]="2"></dxi-item>
+                    <dxi-item dataField="detailTypeId"></dxi-item>
+                    <dxi-item dataField="projectId"></dxi-item>
+                    <dxi-item dataField="source"></dxi-item>
+                    <dxi-item dataField="page"></dxi-item>
+                    <dxi-item dataField="chrono" [colSpan]="2"></dxi-item>
+                </dxi-item>
+            </dxo-form>
+        </dxo-editing>
+
+        <dxi-column dataField="detailTypeId" caption="Type" [width]="100">
+            <dxo-lookup
+                [dataSource]="detailTypesDataSource?.items()"
+                displayExpr="label"
+                valueExpr="id"
+            ></dxo-lookup>
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>
+
+        <dxi-column dataField="detail" dataType="string" caption="Body">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>
+
+        <dxi-column dataField="subject" dataType="string" caption="Subject" [visible]="false">
+        </dxi-column>
+
+        <dxi-column dataField="source" dataType="string" [visible]="false" [allowEditing]="false">
+        </dxi-column>
+
+        <dxi-column
+            dataField="chrono"
+            dataType="datetime"
+            [visible]="false"
+            [calculateDisplayValue]="setChrono"
+        ></dxi-column>
+
+        <dxi-column dataField="added" dataType="date" [visible]="false">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>
+
+        <dxi-column dataField="page" dataType="number" [visible]="false" [allowEditing]="false">
+        </dxi-column>
+
+        <dxi-column
+            dataField="projectId"
+            dataType="number"
+            caption="Project"
+            [visible]="false"
+            [allowEditing]="false"
+        >
+            <dxo-lookup [dataSource]="projects" displayExpr="label" valueExpr="id"></dxo-lookup>
+        </dxi-column>
+
+        <div *dxTemplate="let list of 'detail'">
+            <div class="row-detail">
+                <table>
+                    <tr class="largerow">
+                        <td class="title" width="95">
+                            <img class="detail-icon" src="../../assets/icons/item.png" />
+                            Body
+                        </td>
+                        <td>
+                            {{ list.data.detail }}
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="smalllefttable">
+                    <tr>
+                        <td class="title" width="95">
+                            <img class="detail-icon" src="../../assets/icons/task-type.png" />
+                            Type
+                        </td>
+                        <td class="expand-value">
+                            {{ getTypeNameById(list.data.detailTypeId) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/source.png" />
+                            Source
+                        </td>
+                        <td class="expand-value source-value">{{ list.data.source }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/clock_active.png" />
+                            Chrono
+                        </td>
+                        <td class="expand-value">
+                            {{ setChrono(list.data) }}
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="v-line"></div>
+                <table class="smallrighttable">
+                    <tr>
+                        <td class="title" width="100">
+                            <img class="detail-icon" src="../../assets/icons/subject.png" />
+                            Subject
+                        </td>
+                        <td class="expand-value">
+                            {{ list.data.subject }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/matter.png" />
+                            Project
+                        </td>
+                        <td class="expand-value">
+                            {{ getProjectNamebyID(list.data.projectId) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/end-date.png" />
+                            Page
+                        </td>
+                        <td class="expand-value">
+                            {{ list.data.page }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </dx-data-grid>
+</div>

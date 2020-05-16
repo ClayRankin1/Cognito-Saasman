@@ -1,0 +1,142 @@
+@media screen and (min-width: 901px) {
+    .popup-box {
+        background-color: #ffffff;
+        border: 1px solid #b0b0b0;
+        bottom: 0;
+        top: 0px;
+
+        height: 93%;
+        position: absolute;
+        right: 0px;
+        width: 200px;
+        font-family: 'Open Sans', sans-serif;
+        margin-left: 150px;
+    }
+    .content-block .dx-card .responsive-paddings {
+        margin-right: 240px !important;
+    }
+}
+@media screen and (max-width: 900px) {
+    .popup-box {
+        background-color: red;
+        border: 1px solid #b0b0b0;
+        bottom: 0;
+        top: 0px;
+        height: 500px;
+        margin-left: 50px;
+        font-family: 'Open Sans', sans-serif;
+    }
+}
+
+.logos-container {
+    margin: 20px 0 40px 0;
+    text-align: center;
+    svg {
+        display: inline-block;
+    }
+}
+
+.devextreme-logo {
+    width: 200px;
+    height: 34px;
+    margin-bottom: 13px;
+}
+
+.angular-logo {
+    width: 220px;
+    height: 62px;
+}
+
+.plus {
+    margin: 15px 10px;
+    width: 22px;
+    height: 22px;
+}
+
+:host-context(.screen-x-small) .logos-container {
+    svg {
+        width: 100%;
+        display: block;
+        &.plus {
+            margin: 0;
+        }
+    }
+}
+.title {
+    color: #909090;
+}
+.row-detail {
+    margin-left: 20px;
+}
+.row-detail table tr td {
+    padding: 0px;
+}
+.detail-table {
+    width: 48%;
+    float: left;
+}
+.v-line {
+    width: 2%;
+    float: left;
+    border-left: 1px solid #909090;
+    height: 90px;
+    margin-top: 5px;
+    margin-left: 2%;
+}
+:host ::ng-deep .dx-double-click td {
+    background-color: #c3d3e6 !important;
+}
+:host ::ng-deep #toggle-clock-id {
+    margin-right: 5px;
+}
+:host ::ng-deep #clock {
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+    cursor: pointer;
+    background-image: url('../../assets/icons/clock_inactive.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+:host ::ng-deep .icon-clock {
+    background-image: url('../../assets/icons/clock_active.png') !important;
+}
+:host ::ng-deep .text-clock {
+    width: 100%;
+    height: 10px;
+    text-align: center;
+    font-size: 10px;
+    margin-top: 1px;
+}
+:host ::ng-deep .dx-menu-items-container {
+    white-space: pre-wrap !important;
+}
+:host ::ng-deep .task-menu-popup-btn {
+    margin-top: 20px;
+    float: left;
+}
+:host ::ng-deep .tasks-menu {
+    height: 60px;
+}
+:host ::ng-deep #tasksgrid {
+    height: calc(100% - 60px);
+}
+:host ::ng-deep .clone-checkbox-content {
+    margin-top: 20px;
+}
+:host ::ng-deep #tasksgrid .dx-datagrid-content .dx-datagrid-table .dx-row td:nth-child(3) {
+    padding-left: 3px;
+}
+:host ::ng-deep #tasksgrid .row-detail .largetable {
+    margin-top: 10px;
+}
+:host ::ng-deep #tasksgrid .row-detail .largetable .largetitle {
+    vertical-align: top;
+}
+:host ::ng-deep #tasksgrid .row-detail .largetable .largetitle .largetext {
+    white-space: pre-wrap;
+}
+.expand-value {
+    text-align: right;
+}

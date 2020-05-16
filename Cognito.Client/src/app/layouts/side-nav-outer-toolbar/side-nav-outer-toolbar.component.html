@@ -1,0 +1,35 @@
+<app-header
+    id="layout-header-id"
+    class="layout-header"
+    [menuToggleEnabled]="true"
+    (menuToggle)="menuOpened = !menuOpened"
+    [title]="title"
+>
+</app-header>
+<dx-drawer
+    class="layout-body"
+    position="before"
+    [closeOnOutsideClick]="shaderEnabled"
+    [openedStateMode]="menuMode"
+    [revealMode]="menuRevealMode"
+    [shading]="shaderEnabled"
+    [(opened)]="menuOpened"
+>
+    <app-side-navigation-menu
+        [menuItems]="menuItems"
+        [compactMode]="!menuOpened"
+        [selectedItem]="selectedRoute"
+        class="dx-swatch-additional"
+        *dxTemplate="let dataMenu of 'panel'"
+        (selectedItemChanged)="navigationChanged($event)"
+        (openMenu)="navigationClick()"
+    >
+    </app-side-navigation-menu>
+    <dx-scroll-view class="full-height-scrollable">
+        <div id="three-panel-content">
+            <div class="three-main-panel">
+                <ng-content></ng-content>
+            </div>
+        </div>
+    </dx-scroll-view>
+</dx-drawer>

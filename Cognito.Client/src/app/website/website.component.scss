@@ -1,0 +1,63 @@
+.droparea {
+    outline: 2px dashed #92b0b3;
+    outline-offset: -10px;
+    transition: outline-offset 0.15s ease-in-out, background-color 0.15s linear;
+    background-color: #c8dadf;
+    position: relative;
+    padding: 50px 20px;
+    width: 90%;
+    margin: 0px auto;
+}
+.box_icon {
+    width: 100%;
+    height: 80px;
+    fill: #92b0b3;
+    display: block;
+    margin-bottom: 40px;
+}
+.droptext {
+    max-width: 80%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+}
+.draggedtiles {
+    margin-top: 10px;
+}
+:host ::ng-deep .tile-item {
+    float: left;
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    text-align: center;
+    border: 1px solid;
+    word-break: break-all;
+    display: table;
+}
+:host ::ng-deep .tile-urltext {
+    display: table-cell;
+    vertical-align: middle;
+    cursor: pointer;
+}
+:host ::ng-deep .urltext {
+    margin-left: 15px;
+    width: 215px;
+    height: 35px;
+}
+:host ::ng-deep .btn_urlsend {
+    text-align: right;
+    margin-top: 15px;
+}
+:host ::ng-deep .websiteDiv {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+:host ::ng-deep .websiteDiv #dropareaid {
+    display: none;
+}
+:host ::ng-deep .websiteDiv #dropareaid .content {
+    text-align: center;
+}

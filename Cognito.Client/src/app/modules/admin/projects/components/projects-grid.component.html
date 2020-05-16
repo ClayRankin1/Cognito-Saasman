@@ -1,0 +1,119 @@
+<dx-data-grid
+    #projectsGrid
+    [elementAttr]="getGridAttributes()"
+    [dataSource]="getDataSource()"
+    [showBorders]="true"
+    [repaintChangesOnly]="true"
+    (onInitialized)="onProjectsGridInitialized($event)"
+    (onInitNewRow)="onProjectsGridInitNewRow($event)"
+    (onRowInserting)="onProjectsGridRowInserting($event)"
+    (onEditingStart)="onProjectsGridEditingStart($event)"
+>
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-editing mode="form" [allowAdding]="true" [allowDeleting]="true" [allowUpdating]="true">
+        <dxo-form [colCount]="2" height="300px" scrollingEnabled="true">
+            <dxi-item dataField="fullName" [isRequired]="true" [editorOptions]="{ maxLength: 200 }">
+                <dxo-label text="Project Name" location="left"></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="nickname" [isRequired]="true" [editorOptions]="{ maxLength: 25 }">
+                <dxo-label text="Project Nickname" location="left"></dxo-label>
+            </dxi-item>
+            <dxi-item
+                dataField="description"
+                editorType="dxTextArea"
+                [colSpan]="2"
+                [editorOptions]="{ maxLength: 1000 }"
+            >
+                <dxo-label location="left" text="Description"></dxo-label>
+            </dxi-item>
+            <dxi-item itemType="group" [colCount]="12" [colSpan]="2">
+                <dxi-item dataField="isBillable" [colSpan]="2">
+                    <dxo-label text="Billable?" location="left"></dxo-label>
+                </dxi-item>
+                <dxi-item
+                    dataField="clientNo"
+                    [editorOptions]="editorOptions.AlphanumericMask.extend({ maxLength: 30 })"
+                    [colSpan]="5"
+                >
+                    <dxo-label text="Client Account ID" location="left"></dxo-label>
+                </dxi-item>
+                <dxi-item
+                    dataField="projectNo"
+                    [editorOptions]="editorOptions.AlphanumericMask.extend({ maxLength: 30 })"
+                    [colSpan]="5"
+                >
+                    <dxo-label text="Client Project ID" location="left"></dxo-label>
+                </dxi-item>
+            </dxi-item>
+            <dxi-item dataField="ownerId">
+                <dxo-label text="Project Owner" location="left"></dxo-label>
+                <dxi-validation-rule type="required" message="Owner is required">
+                </dxi-validation-rule>
+                <div *dxTemplate>
+                    <dx-select-box
+                        [(value)]="ownerId"
+                        [items]="users"
+                        displayExpr="name"
+                        valueExpr="id"
+                        (onValueChanged)="onOwnerChanged()"
+                    >
+                    </dx-select-box>
+                </div>
+            </dxi-item>
+            <dxi-item dataField="proxyId">
+                <dxo-label text="Project Proxy" location="left"></dxo-label>
+                <div *dxTemplate>
+                    <dx-select-box
+                        [(value)]="proxyId"
+                        [items]="proxyUsers"
+                        displayExpr="name"
+                        valueExpr="id"
+                        showClearButton="true"
+                        (onValueChanged)="onProxyChanged()"
+                    >
+                    </dx-select-box>
+                </div>
+            </dxi-item>
+            <dxi-item dataField="users">
+                <dxo-label text="Users" location="left"></dxo-label>
+                <div *dxTemplate>
+                    <dx-data-grid
+                        #usersGrid
+                        [dataSource]="userDataSource"
+                        [showBorders]="true"
+                        [(selectedRowKeys)]="selectedUsers"
+                        (onEditorPreparing)="onUserGridEditorPreparing($event)"
+                        (onSelectionChanged)="onUserGridSelectionChanged()"
+                    >
+                        <dxo-paging [pageSize]="10"></dxo-paging>
+                        <dxo-selection
+                            selectAllMode="allPages"
+                            showCheckBoxesMode="always"
+                            mode="multiple"
+                        ></dxo-selection>
+                        <dxi-column dataField="user.name"></dxi-column>
+                        <dxi-column
+                            dataField="pendingTasks"
+                            caption="Pending Tasks"
+                        ></dxi-column>
+                    </dx-data-grid>
+                </div>
+            </dxi-item>
+        </dxo-form>
+    </dxo-editing>
+    <dxo-selection mode="none"></dxo-selection>
+
+    <dxi-column dataField="domain.tenant.name" [visible]="false"></dxi-column>
+    <dxi-column dataField="domain.name" [visible]="false"></dxi-column>
+    <dxi-column dataField="fullName" caption="Project Name"></dxi-column>
+    <dxi-column dataField="nickname"></dxi-column>
+    <dxi-column dataField="description" [visible]="false"></dxi-column>
+    <dxi-column dataField="isBillable" caption="Billable"></dxi-column>
+    <dxi-column dataField="clientNo" caption="Client Account ID"></dxi-column>
+    <dxi-column dataField="projectNo" caption="Client Project ID"></dxi-column>
+    <dxi-column dataField="owner.name" caption="Owner"></dxi-column>
+    <dxi-column dataField="proxy.name" caption="Proxy"></dxi-column>
+    <dxi-column dataField="ownerId" [visible]="false"></dxi-column>
+    <dxi-column dataField="proxyId" [visible]="false"></dxi-column>
+    <dxi-column dataField="users" [visible]="false"></dxi-column>
+</dx-data-grid>

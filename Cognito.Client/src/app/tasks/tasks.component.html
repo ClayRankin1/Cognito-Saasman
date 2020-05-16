@@ -1,0 +1,492 @@
+<div class="panel-title">Tasks</div>
+<div class="gridDiv">
+    <div class="tasks-menu">
+        <dx-menu
+            #menu
+            [dataSource]="menuList"
+            displayExpr="name"
+            width="100%"
+            orientation="horizontal"
+            submenuDirection="auto"
+            [hideSubmenuOnMouseLeave]="false"
+            [adaptivityEnabled]="false"
+            (onItemClick)="MenuClick($event)"
+            (onInitialized)="menuInitial($event)"
+        >
+        </dx-menu>
+    </div>
+    <dx-data-grid
+        id="tasksgrid"
+        keyExpr="id"
+        [dataSource]="store"
+        [remoteOperations]="false"
+        [showBorders]="true"
+        (onInitNewRow)="onInitNewRow($event)"
+        (onEditingStart)="editstart($event)"
+        [hoverStateEnabled]="true"
+        (onRowUpdating)="usagesGrid_onRowUpdating($event)"
+        (onRowUpdated)="onRowUpdated($event)"
+        (onRowInserted)="onRowInserted($event)"
+        (onRowInserting)="onRowInserting($event)"
+        (onRowRemoved)="onRowRemoved($event)"
+        (onRowClick)="onRowClick($event)"
+        (onRowDblClick)="onRowDblClick($event)"
+        (onSelectionChanged)="selectionChanged($event)"
+        (onContentReady)="contentReady($event)"
+        [masterDetail]="{ enabled: false, template: 'detail' }"
+        (onInitialized)="saveGridInstance($event)"
+        (onEditorPreparing)="onEditorPreparing($event)"
+        (onCellPrepared)="onCellPrepared($event)"
+        (onToolbarPreparing)="onToolbarPreparing($event)"
+        [wordWrapEnabled]="true"
+        [allowColumnReordering]="true"
+        [allowColumnResizing]="true"
+        [focusedRowEnabled]="true"
+        [(focusedRowKey)]="focusedRowKey"
+        [autoNavigateToFocusedRow]="true"
+    >
+        <dxo-search-panel [visible]="true" hint="Search" [width]="150"></dxo-search-panel>
+        <dxo-column-chooser
+            [enabled]="true"
+            hint="Column Chooser"
+            mode="select"
+        ></dxo-column-chooser>
+        <dxo-grouping #expand [autoExpandAll]="true" [contextMenuEnabled]="true"></dxo-grouping>
+        <dxo-group-panel [visible]="false"></dxo-group-panel>
+        <dxo-selection mode="multiple"></dxo-selection>
+        <dxo-paging [enabled]="false"></dxo-paging>
+        <dxo-scrolling columnRenderingMode="virtual"></dxo-scrolling>
+        <dxo-sorting mode="multiple"></dxo-sorting>
+        <dxo-filter-row [visible]="filterVisible"></dxo-filter-row>
+
+        <dxo-editing
+            mode="popup"
+            [allowAdding]="true"
+            [allowUpdating]="true"
+            [allowDeleting]="true"
+        >
+            <dxo-popup
+                [showTitle]="true"
+                [width]="700"
+                [onShowing]="onShowing"
+                [toolbarItems]="[
+                    {
+                        widget: 'dxButton',
+                        location: 'center',
+                        options: {
+                            text: 'Save',
+                            icon: 'save'
+                        },
+                        toolbar: 'bottom',
+                        onClick: onSave,
+                        name: 'Save'
+                    },
+                    {
+                        widget: 'dxButton',
+                        location: 'center',
+                        options: {
+                            text: 'Save+New',
+                            icon: 'save'
+                        },
+                        toolbar: 'bottom',
+                        onClick: onSaveNew,
+                        name: 'SaveNew'
+                    },
+                    {
+                        widget: 'dxButton',
+                        location: 'center',
+                        options: {
+                            text: 'Save+Copy',
+                            icon: 'save'
+                        },
+                        toolbar: 'bottom',
+                        onClick: onSaveCopy,
+                        name: 'SaveCopy'
+                    },
+                    {
+                        widget: 'dxButton',
+                        location: 'center',
+                        options: {
+                            text: 'Save+Next',
+                            icon: 'save'
+                        },
+                        toolbar: 'bottom',
+                        onClick: onSaveNext,
+                        name: 'SaveNext'
+                    },
+                    {
+                        widget: 'dxButton',
+                        location: 'center',
+                        options: {
+                            text: 'Cancel',
+                            icon: 'close'
+                        },
+                        toolbar: 'bottom',
+                        onClick: onCancel,
+                        name: 'Cancel'
+                    }
+                ]"
+            >
+            </dxo-popup>
+            <dxo-form>
+                <dxi-item itemType="group" [colCount]="1" [colSpan]="2">
+                    <dxi-item dataField="nextDate"></dxi-item>
+                    <dxi-item
+                        dataField="isEvent"
+                        editorType="dxCheckBox"
+                        cssClass="isEventCheckbox"
+                        helpText="Check here if Task is an Event."
+                    ></dxi-item>
+                    <dxi-item dataField="timeId"></dxi-item>
+                    <dxi-item dataField="endDate"></dxi-item>
+                    <dxi-item dataField="projectId"></dxi-item>
+                    <dxi-item dataField="taskTypeId"></dxi-item>
+                    <dxi-item
+                        dataField="description"
+                        editorType="dxTextArea"
+                        [colSpan]="1"
+                        [editorOptions]="{ height: 100 }"
+                    >
+                    </dxi-item>
+                    <dxi-item dataField="ownerId"></dxi-item>
+                    <dxi-item dataField="subtasks"></dxi-item>
+                    <dxi-item dataField="status"></dxi-item>
+                    <dxi-item dataField="accrued"></dxi-item>
+                </dxi-item>
+            </dxo-form>
+        </dxo-editing>
+
+        <dxi-column
+            dataField="groupDate"
+            dataType="date"
+            [groupIndex]="0"
+            caption="Date"
+            [customizeText]="setgroupdate"
+        ></dxi-column>
+        <dxi-column
+            dataField="virtualcol"
+            dataType="string"
+            caption="Info"
+            [allowEditing]="false"
+            [calculateCellValue]="setvirtualtest"
+        >
+        </dxi-column>
+        <dxi-column
+            dataField="nextDate"
+            dataType="date"
+            [visible]="false"
+            caption="Date"
+            [width]="7 + '%'"
+        >
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>
+        <dxi-column dataField="isEvent" dataType="boolean" [visible]="false" caption="Event?">
+        </dxi-column>
+        <dxi-column
+            dataField="timeId"
+            [visible]="false"
+            caption="When"
+            [width]="6 + '%'"
+            sortOrder="asc"
+        >
+            <dxo-lookup [dataSource]="timesLookup" displayExpr="label" valueExpr="id"></dxo-lookup>
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>
+        <dxi-column
+            dataField="endDate"
+            dataType="date"
+            [visible]="false"
+            caption="Due By"
+            [width]="7 + '%'"
+        >
+            <dxi-validation-rule
+                type="range"
+                [min]="dueMinDate"
+                message="The Due date must be today or future. It cannot be in the past."
+            ></dxi-validation-rule>
+        </dxi-column>
+        <dxi-column dataField="status" [visible]="false" dataType="string">
+            <dxo-lookup [dataSource]="statusLookup" displayExpr="label" valueExpr="id"></dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="projectId" [visible]="false" caption="Project" [width]="6 + '%'">
+            <dxo-lookup
+                [dataSource]="projectsLookup"
+                displayExpr="name"
+                valueExpr="id"
+            ></dxo-lookup>
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>
+
+        <dxi-column dataField="taskTypeId" [visible]="false" caption="Type" [width]="6 + '%'">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+            <dxo-lookup
+                [dataSource]="taskTypeLookup"
+                displayExpr="label"
+                valueExpr="id"
+            ></dxo-lookup>
+        </dxi-column>
+        <dxi-column
+            dataField="description"
+            caption="Description"
+            [visible]="false"
+            hint="Description"
+        >
+        </dxi-column>
+        <dxi-column
+            dataField="subtasks"
+            caption="Team"
+            [visible]="false"
+            [allowSorting]="false"
+            editCellTemplate="tagBoxEditor"
+            [cellTemplate]="teamCellTemplate"
+            [calculateFilterExpression]="calculateFilterExpression"
+            [width]="10 + '%'"
+        >
+            <dxo-lookup [dataSource]="workers" valueExpr="id" displayExpr="fullName"> </dxo-lookup>
+        </dxi-column>
+        <div *dxTemplate="let cellInfo of 'tagBoxEditor'">
+            <dx-tag-box
+                [dataSource]="workers"
+                [value]="teamSelected"
+                valueExpr="id"
+                displayExpr="fullName"
+                [showSelectionControls]="true"
+                [maxDisplayedTags]="3"
+                [showMultiTagOnly]="false"
+                applyValueMode="useButtons"
+                [searchEnabled]="true"
+                (onValueChanged)="cellInfo.setValue($event.value)"
+                (onSelectionChanged)="cellInfo.component.updateDimensions()"
+                (onInitialized)="teamloadata(cellInfo)"
+            >
+            </dx-tag-box>
+        </div>
+        <dxi-column
+            dataField="detailsCount"
+            caption="#Details"
+            [allowEditing]="false"
+            [visible]="false"
+            hint="Count of Detail records"
+            [width]="5 + '%'"
+        >
+        </dxi-column>
+        <dxi-column
+            dataField="accrued"
+            dataType="string"
+            [visible]="true"
+            caption="Hrs"
+            [width]="60"
+        >
+            <dxi-validation-rule
+                type="pattern"
+                [pattern]="accruedPattern"
+                message="Please enter a valid time in the format of HH:MM."
+            ></dxi-validation-rule>
+        </dxi-column>
+        <dxi-column dataField="ownerId" [visible]="false" caption="Owner">
+            <dxo-lookup [dataSource]="owners" displayExpr="fullName" valueExpr="id"></dxo-lookup>
+        </dxi-column>
+
+        <div *dxTemplate="let list of 'detail'">
+            <div class="row-detail">
+                <table class="detail-table" height="100px">
+                    <tr>
+                        <td width="70" class="title">
+                            <img class="detail-icon" src="../../assets/icons/status.png" />
+                            Status
+                        </td>
+                        <td class="expand-value">{{ list.data.status }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/accrued.png" />
+                            Accrued
+                        </td>
+                        <td class="expand-value">{{ list.data.accrued }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/matter.png" />
+                            Project
+                        </td>
+                        <td class="expand-value">
+                            {{ getProjectNamebyID(list.data.projectId) }}
+                        </td>
+                    </tr>
+                </table>
+                <div class="v-line"></div>
+                <table height="100px" width="48%">
+                    <tr>
+                        <td width="65" class="title">
+                            <img class="detail-icon" src="../../assets/icons/start-date.png" />
+                            Date
+                        </td>
+                        <td class="expand-value">{{ getstartdata(list.data.nextDate) }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/end-date.png" />
+                            Due By
+                        </td>
+                        <td class="expand-value">
+                            {{ getendate(list.data.endDate, list.data.timeId) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/when.png" />
+                            When
+                        </td>
+                        <td class="expand-value">
+                            {{ getTimeNamebyID(list.data.timeId) }}
+                        </td>
+                    </tr>
+                </table>
+                <table height="65px" class="largetable">
+                    <tr class="largetitle">
+                        <td class="title" width="95">
+                            <img class="detail-icon" src="../../assets/icons/task.png" />
+                            Description
+                        </td>
+                        <td class="largetext">{{ list.data.description }}</td>
+                    </tr>
+                    <tr class="largetitle">
+                        <td class="title">
+                            <img class="detail-icon" src="../../assets/icons/team.png" />
+                            Team
+                        </td>
+                        <td class="largetext">
+                            {{ getTeamNamebyIds(list.data.subtasks) }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </dx-data-grid>
+</div>
+<!-- Popup for "Move" menu -->
+<dx-popup
+    [showTitle]="true"
+    title="Move Records"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="movePopupVisible"
+    [width]="400"
+    [height]="175"
+>
+    <form action="your-action" (submit)="onMoveSubmit()">
+        <dx-form
+            id="form"
+            [formData]=""
+            [readOnly]="false"
+            [showColonAfterLabel]="true"
+            [showValidationSummary]="true"
+        >
+            <dxi-item
+                dataField=""
+                editorType="dxDateBox"
+                [editorOptions]="{
+                    invalidDateMessage: 'The date must have the following format: MM/dd/yyyy',
+                    openOnFieldClick: true,
+                    onValueChanged: onMoveDateValueChanged,
+                    value: selectedDate
+                }"
+            >
+                <dxo-label text="Date of move"> </dxo-label>
+                <dxi-validation-rule type="required" message="Date of move is required">
+                </dxi-validation-rule>
+            </dxi-item>
+
+            <dxi-item
+                itemType="button"
+                horizontalAlignment="center"
+                [buttonOptions]="{
+                    text: 'OK',
+                    stylingMode: 'outlined',
+                    type: 'default',
+                    useSubmitBehavior: true,
+                    width: 100
+                }"
+                cssClass="task-menu-popup-btn"
+            >
+            </dxi-item>
+        </dx-form>
+    </form>
+</dx-popup>
+
+<!-- Popup for "Clone" menu -->
+<dx-popup
+    [showTitle]="true"
+    title="Clone Task"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="clonePopupVisible"
+    [width]="400"
+    [height]="240"
+>
+    <form action="your-action" (submit)="onCloneSubmit()">
+        <dx-form
+            id="clone-form"
+            [readOnly]="false"
+            [showColonAfterLabel]="true"
+            [showValidationSummary]="true"
+        >
+            <dxi-item
+                editorType="dxSelectBox"
+                [editorOptions]="{
+                    dataSource: projectsLookup,
+                    openOnFieldClick: true,
+                    searchEnabled: true,
+                    displayExpr: 'name',
+                    valueExpr: 'id',
+                    value: clickedRowProject,
+                    onValueChanged: onCloneProjectChanged
+                }"
+            >
+                <dxo-label text="Select Project"></dxo-label>
+                <dxi-validation-rule type="required" message="Project is required">
+                </dxi-validation-rule>
+            </dxi-item>
+
+            <dxi-item
+                editorType="dxRadioGroup"
+                [editorOptions]="{
+                    items: cloneOptions,
+                    value: selectedCloneRadio,
+                    onValueChanged: onCloneRadioChanged
+                }"
+                cssClass="clone-checkbox-content"
+            ></dxi-item>
+
+            <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                <dxi-item
+                    itemType="button"
+                    horizontalAlignment="center"
+                    [buttonOptions]="{
+                        text: 'Clone',
+                        stylingMode: 'outlined',
+                        type: 'default',
+                        useSubmitBehavior: true,
+                        width: 100
+                    }"
+                    cssClass="task-menu-popup-btn"
+                >
+                </dxi-item>
+
+                <dxi-item
+                    itemType="button"
+                    horizontalAlignment="center"
+                    [buttonOptions]="{
+                        text: 'Cancel',
+                        stylingMode: 'outlined',
+                        type: 'default',
+                        width: 100,
+                        onClick: onCloneCancelClick
+                    }"
+                    cssClass="task-menu-popup-btn"
+                >
+                </dxi-item>
+            </dxi-item>
+        </dx-form>
+    </form>
+</dx-popup>

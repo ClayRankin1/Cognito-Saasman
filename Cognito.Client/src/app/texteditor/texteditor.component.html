@@ -1,0 +1,57 @@
+<div (dragover)="myFunction($event)">
+    <img src="../../assets/icons/back.png" id="back_btn" />
+
+    <!-- @clayr Latest front and back deployed to AWS site - 
+You should see SIGNIFICANT performance improvements with Details loading....
+PLEASE BE SURE AND LOG OUT AND BACK IN!
+Also - after doing this please check documents tab again to see if error persists
+You should also find that with documents clicking "+" takes you to the Rich Text editor - (SAVE functionality is in the works BTW) -->
+
+    <dx-popup
+        #dropPopUp
+        [width]="660"
+        [height]="350"
+        [showTitle]="true"
+        [dragEnabled]="false"
+        [closeOnOutsideClick]="true"
+        [(visible)]="dropPopUpVisible"
+    >
+        <div class="popup-property-details">
+            <div class="large-text">Drop Text</div>
+
+            <div class="full-width-content">
+                <dx-text-area [height]="190"> </dx-text-area>
+            </div>
+            <!-- <dx-text-box
+                
+                style="height: 200; width: 200;"
+                #dropzone  (onValueChanged)="txtDropped($event)">
+            </dx-text-box> -->
+        </div>
+    </dx-popup>
+
+    <dx-popup
+        #saveAsPopUp
+        [width]="660"
+        [height]="350"
+        [showTitle]="true"
+        [dragEnabled]="false"
+        [closeOnOutsideClick]="true"
+        [(visible)]="popupVisible"
+    >
+        <div *dxTemplate="let data of 'content'">
+            <div class="popup-property-details">
+                <div class="large-text">Save As</div>
+                <dx-text-box #filename (onValueChanged)="valueChanged($event)"></dx-text-box>
+                <dx-button
+                    text="Save"
+                    type="success"
+                    [width]="260"
+                    [height]="44"
+                    (onClick)="saveAsState($event)"
+                >
+                </dx-button>
+            </div>
+        </div>
+    </dx-popup>
+</div>

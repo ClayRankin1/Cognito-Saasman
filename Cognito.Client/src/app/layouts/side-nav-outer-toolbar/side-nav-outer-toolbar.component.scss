@@ -1,0 +1,38 @@
+:host {
+    flex-direction: column;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.layout-header {
+    z-index: 1501;
+}
+
+.layout-body {
+    flex: 1;
+    min-height: 0;
+}
+
+.content {
+    flex-grow: 1;
+}
+
+li {
+    background: -webkit-linear-gradient(#6a93d4, #1b1bb3);
+    background: -moz-linear-gradient(#6a93d4, #1b1bb3);
+    background: -ms-linear-gradient(#6a93d4, #1b1bb3);
+    background: -o-linear-gradient(#6a93d4, #1b1bb3);
+    background: linear-gradient(#6a93d4, #1b1bb3);
+    margin-top: 0.5em;
+    padding: 0.5em;
+    color: white;
+    text-shadow: 1px 1px 0px black;
+    box-shadow: 2px 2px 3px black;
+    border-radius: 3px;
+}
+
+:host ::ng-deep .layout-body .full-height-scrollable #three-panel-content .appfooter {
+    position: absolute;
+    bottom: 0;
+}

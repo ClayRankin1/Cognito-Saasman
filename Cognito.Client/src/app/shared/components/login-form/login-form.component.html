@@ -1,0 +1,55 @@
+<form action="POST" (submit)="onFormSubmit()">
+    <div class="login-loading">
+        <dx-load-indicator
+            class="login-indicator"
+            id="large-indicator"
+            height="60"
+            width="60"
+            [visible]="isLoading"
+        ></dx-load-indicator>
+    </div>
+
+    <div class="login-header">
+        <div class="title">{{ title }}</div>
+        <div>Sign In To Your Account</div>
+    </div>
+    <dx-form id="loginForm" [(formData)]="data">
+        <dxi-item dataField="email">
+            <dxi-validation-rule type="required" message="Email is required"></dxi-validation-rule>
+            <dxi-validation-rule type="email" message="Email is invalid"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="password" [editorOptions]="{ mode: 'password' }">
+            <dxi-validation-rule
+                type="required"
+                message="Password is required"
+            ></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item
+            itemType="simple"
+            editorType="dxCheckBox"
+            cssClass="remember-me"
+            [editorOptions]="{
+                text: 'Remember Me',
+                value: false
+            }"
+        >
+        </dxi-item>
+        <dxi-item cssClass="error-message" [visible]="isInvalidLogin">
+            <span>You have entered incorrect information. Please try again.</span>
+        </dxi-item>
+        <dxi-item
+            itemType="button"
+            horizontalAlignment="center"
+            cssClass="login_btn"
+            [buttonOptions]="{
+                text: 'Sign In',
+                type: 'default',
+                stylingMode: 'contained',
+                width: '100%',
+                useSubmitBehavior: true
+            }"
+        >
+        </dxi-item>
+    </dx-form>
+    <a routerLink="/password-reset">Forgot password?</a>
+</form>

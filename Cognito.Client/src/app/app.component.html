@@ -1,0 +1,13 @@
+<ng-container *ngIf="user; else notAuthorized">
+    <!-- this is the top bar with hamburger -->
+    <app-side-nav-outer-toolbar title="Cognito 3-11-20">
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </app-side-nav-outer-toolbar>
+</ng-container>
+<ng-template #notAuthorized>
+    <app-single-card>
+        <router-outlet></router-outlet>
+    </app-single-card>
+</ng-template>

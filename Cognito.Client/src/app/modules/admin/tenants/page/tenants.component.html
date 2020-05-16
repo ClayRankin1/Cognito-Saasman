@@ -1,0 +1,134 @@
+<dx-data-grid
+    #tenantsGrid
+    id="tenantsGrid"
+    [dataSource]="dataSource"
+    [showBorders]="true"
+    [wordWrapEnabled]="true"
+    (onInitialized)="onTenantGridInitialized($event)"
+>
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-editing
+        mode="popup"
+        [allowAdding]="isSysAdmin"
+        [allowDeleting]="isSysAdmin"
+        [allowUpdating]="true"
+    >
+        <dxo-popup
+            title="Tenant"
+            [showTitle]="true"
+            maxHeight="100%"
+            [height]="'auto'"
+            [width]="600"
+        >
+        </dxo-popup>
+        <dxo-form [colCount]="1">
+            <dxi-item itemType="group" caption="Company Information" [colCount]="3">
+                <dxi-item
+                    dataField="companyName"
+                    [colSpan]="3"
+                    [isRequired]="true"
+                    [editorOptions]="{ maxLength: 200 }"
+                >
+                    <dxo-label location="top"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="tenantName" [colSpan]="3" [editorOptions]="{ maxLength: 200 }">
+                    <dxo-label
+                        location="top"
+                        text="Tenant Name (if different from Company Name)"
+                    ></dxo-label>
+                </dxi-item>
+                <dxi-item
+                    dataField="address.street"
+                    editorType="dxTextArea"
+                    [colSpan]="3"
+                    [isRequired]="true"
+                    [editorOptions]="{ maxLength: 250 }"
+                >
+                    <dxo-label location="top" text="Street"></dxo-label>
+                </dxi-item>
+                <dxi-item
+                    dataField="address.city"
+                    [isRequired]="true"
+                    [editorOptions]="{ width: '280px', maxLength: 100 }"
+                >
+                    <dxo-label location="top" text="City"></dxo-label>
+                </dxi-item>
+                <dxi-item
+                    editorType="dxSelectBox"
+                    dataField="address.stateId"
+                    [editorOptions]="{
+                        width: '110px',
+                        dataSource: states,
+                        openOnFieldClick: true,
+                        searchEnabled: true,
+                        displayExpr: 'label',
+                        valueExpr: 'id'
+                    }"
+                >
+                    <dxo-label text="State" location="top"></dxo-label>
+                    <dxi-validation-rule type="required" message="State is required">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item
+                    dataField="address.zip"
+                    [isRequired]="true"
+                    [width]="80"
+                    [editorOptions]="editorOptions.Zip.extend({ width: '90px' })"
+                >
+                    <dxo-label location="top" text="Zip"></dxo-label>
+                </dxi-item>
+            </dxi-item>
+            <dxi-item itemType="group" caption="Contact Information">
+                <dxi-item
+                    dataField="contactName"
+                    [isRequired]="true"
+                    [editorOptions]="{ maxLength: 50 }"
+                >
+                    <dxo-label text="Name" location="top"></dxo-label>
+                </dxi-item>
+                <dxi-item
+                    dataField="email"
+                    [isRequired]="true"
+                    [editorOptions]="{ maxLength: 128 }"
+                >
+                    <dxo-label text="Email" location="top"></dxo-label>
+                    <dxi-validation-rule type="email" message="Email is invalid">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="phone" [isRequired]="true" [editorOptions]="{ maxLength: 25 }">
+                    <dxo-label text="Phone" location="top"></dxo-label>
+                </dxi-item>
+            </dxi-item>
+        </dxo-form>
+    </dxo-editing>
+    <dxo-selection mode="none"></dxo-selection>
+
+    <dxi-column dataField="name" caption="Tenant Name"></dxi-column>
+    <dxi-column dataField="tenantName" [visible]="false"></dxi-column>
+    <dxi-column dataField="companyName"></dxi-column>
+    <dxi-column dataField="address.street" [visible]="false"></dxi-column>
+    <dxi-column dataField="address.city" caption="City" [visible]="false"></dxi-column>
+    <dxi-column dataField="address.state.label" caption="State" [visible]="false"></dxi-column>
+    <dxi-column dataField="address.stateId" [visible]="false"></dxi-column>
+    <dxi-column dataField="address.zip" [visible]="false"></dxi-column>
+    <dxi-column dataField="contactName" caption="Contact"></dxi-column>
+    <dxi-column dataField="phone"></dxi-column>
+    <dxi-column dataField="email"></dxi-column>
+    <dxi-column dataField="tenantAdminEmails" caption="Tenant Admin"></dxi-column>
+
+    <dxi-column type="buttons">
+        <dxi-button name="edit" hint="Edit Tenant"></dxi-button>
+        <dxi-button name="delete" hint="Delete Tenant"></dxi-button>
+        <dxi-button name="add" icon="plus" hint="Add Domain" [onClick]="addDomainRow" [visible]="isSysAdmin"></dxi-button>
+    </dxi-column>
+    <dxo-master-detail [enabled]="true" template="masterDetail"></dxo-master-detail>
+
+    <div *dxTemplate="let tenant of 'masterDetail'">
+        <div class="master-detail-caption">Domains</div>
+        <app-domains-grid
+            [gridId]="getDomainsGridId(tenant)"
+            [licenses]="licenses"
+            [tenantRow]="tenant"
+        ></app-domains-grid>
+    </div>
+</dx-data-grid>
